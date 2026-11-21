@@ -2,7 +2,7 @@
   "format": 2,
   "id": "aprac2-openrac-dev",
   "name": "ArchipelagoRAC2",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "ArchipelagoRAC2 contributors; based on APRac2 by evilwb / Will Becker",
   "description": "Experimental native ArchipelagoRAC2 gameplay and Archipelago bridge for Going Commando USA v1.01. Gameplay requires the included OpenRAC source patch. Based on evilwb/APRac2: https://github.com/evilwb/APRac2; native host by OpenRAC: https://github.com/OpenRAC/OpenRAC.",
   "license": "MIT",

@@ -4,6 +4,7 @@ import importlib.util
 from pathlib import Path
 import shutil
 import tempfile
+from zipfile import ZipFile
 
 p=argparse.ArgumentParser(description=__doc__)
 p.add_argument('--sdk',type=Path,required=True)
@@ -26,7 +27,12 @@ with tempfile.TemporaryDirectory(prefix='aprac2-bindings-') as folder:
     module._BINDINGS=bindings
     project=Path(__file__).resolve().parents[1]
     shutil.copyfile(project/'CREDITS.md',a.input/'README-CREDITS.md')
+    upstream_license=project/'third_party/APRac2-LICENSE.md'
+    shutil.copyfile(upstream_license,a.input/'LICENSE.APRac2')
     packaged=module.package(a.input,a.output)
+    with ZipFile(packaged) as archive:
+        if archive.read('LICENSE.APRac2')!=upstream_license.read_bytes():
+            raise RuntimeError('Packaged APRac2 license differs from the original notice')
     branded=a.output/str(packaged.name).replace('aprac2-openrac-dev-','ArchipelagoRAC2-').replace('aprac2-openrac-probe-','ArchipelagoRAC2-Probe-')
     if packaged!=branded:packaged.replace(branded)
     print(branded)

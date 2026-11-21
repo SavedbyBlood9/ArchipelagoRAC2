@@ -11,3 +11,7 @@ Passed on Windows x86-64:
 The provided disc matches APRac2's supported USA v1.01 MD5. Installed launcher is 1.0.3, bundled host is 1.0.2 with mod API 1.19. No installed launcher, game executable, disc or existing save was modified.
 
 Custom-host build and native smoke-test results are recorded separately in LOCAL_TEST.md. A full campaign, real multiworld playthrough, disk-save fault injection and all gameplay menu combinations remain unverified. Treat the mod as experimental.
+
+## 0.3.1 license-packaging correction
+
+No gameplay behavior changed. Native archive packaging now copies and verifies the exact bytes of the original APRac2 MIT notice as LICENSE.APRac2. The primary MIT notice also retains Will Becker's copyright. Prior campaign tests above describe the 0.3.0 gameplay implementation.

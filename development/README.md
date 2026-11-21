@@ -1,4 +1,4 @@
-# ArchipelagoRAC2 native client 0.3.0 (experimental)
+# ArchipelagoRAC2 native client 0.3.1 (experimental)
 
 Going Commando USA v1.01, OpenRAC mod API 1.19. Implements the native Archipelago adapter, item delivery, independent location checks, vendors, save metadata, DeathLink, hub travel and original YAML gameplay settings.
 
@@ -9,3 +9,5 @@ Use tools/play_local.py from the source package to connect the sidecar and confi
 See the source package README.md, SETTINGS.md, LOCAL_TEST.md and PORTING.md for implementation and validation scope. The DLL includes nlohmann/json (MIT); its notice is included. Host overrides have separate GPL licensing and are supplied only in the source package.
 
 Based on [evilwb/APRac2 by Will Becker](https://github.com/evilwb/APRac2), using the [OpenRAC host and SDK](https://github.com/OpenRAC/OpenRAC). Full attribution is included in README-CREDITS.md (CREDITS.md in the source package).
+
+The original APRac2 MIT license, including Copyright (c) 2024 Will Becker, is bundled verbatim as LICENSE.APRac2.
