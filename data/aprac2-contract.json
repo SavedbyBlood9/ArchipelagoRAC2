@@ -1,0 +1,2202 @@
+{
+  "format": 1,
+  "game": "Ratchet & Clank 2",
+  "target": {
+    "game": "rac2",
+    "version": "ntsc"
+  },
+  "source_sha256": {
+    "data/Items.py": "2b140a9f6d17ce8b376aebc66a31d1bc24ac5e4c49956ff341f886d1c9dc7706",
+    "data/Locations.py": "9d56e91edd692513c2152dc73de4ce91fd75b345f3f78751ca7496a34a8d357b",
+    "data/Planets.py": "d7cbdf464fb4636e7ecf06c684a77ba6d89ec89f6dc20489e0df455b3951155b",
+    "ClientCheckLocations.py": "225b9344a9bcac7488bd1c0aafe1a908ef9ae10e8d25e0f2daff1185fa9b4fa5"
+  },
+  "items": [
+    {
+      "symbol": "HELI_PACK",
+      "id": 1,
+      "name": "Heli-Pack",
+      "kind": "EquipmentData",
+      "game_value": 2
+    },
+    {
+      "symbol": "THRUSTER_PACK",
+      "id": 2,
+      "name": "Thruster-Pack",
+      "kind": "EquipmentData",
+      "game_value": 3
+    },
+    {
+      "symbol": "MAPPER",
+      "id": 3,
+      "name": "Mapper",
+      "kind": "EquipmentData",
+      "game_value": 5
+    },
+    {
+      "symbol": "ARMOR_MAGNETIZER",
+      "id": 4,
+      "name": "Armor Magnetizer",
+      "kind": "EquipmentData",
+      "game_value": 7
+    },
+    {
+      "symbol": "LEVITATOR",
+      "id": 5,
+      "name": "Levitator",
+      "kind": "EquipmentData",
+      "game_value": 8
+    },
+    {
+      "symbol": "SWINGSHOT",
+      "id": 6,
+      "name": "Swingshot",
+      "kind": "EquipmentData",
+      "game_value": 13
+    },
+    {
+      "symbol": "GRAVITY_BOOTS",
+      "id": 7,
+      "name": "Gravity Boots",
+      "kind": "EquipmentData",
+      "game_value": 19
+    },
+    {
+      "symbol": "GRIND_BOOTS",
+      "id": 8,
+      "name": "Grindboots",
+      "kind": "EquipmentData",
+      "game_value": 20
+    },
+    {
+      "symbol": "GLIDER",
+      "id": 9,
+      "name": "Glider",
+      "kind": "EquipmentData",
+      "game_value": 21
+    },
+    {
+      "symbol": "DYNAMO",
+      "id": 10,
+      "name": "Dynamo",
+      "kind": "EquipmentData",
+      "game_value": 36
+    },
+    {
+      "symbol": "ELECTROLYZER",
+      "id": 11,
+      "name": "Electrolyzer",
+      "kind": "EquipmentData",
+      "game_value": 38
+    },
+    {
+      "symbol": "THERMANATOR",
+      "id": 12,
+      "name": "Thermanator",
+      "kind": "EquipmentData",
+      "game_value": 39
+    },
+    {
+      "symbol": "TRACTOR_BEAM",
+      "id": 13,
+      "name": "Tractor Beam",
+      "kind": "EquipmentData",
+      "game_value": 46
+    },
+    {
+      "symbol": "QWARK_STATUETTE",
+      "id": 14,
+      "name": "Qwark Statuette",
+      "kind": "EquipmentData",
+      "game_value": 49
+    },
+    {
+      "symbol": "BOX_BREAKER",
+      "id": 15,
+      "name": "Box Breaker",
+      "kind": "EquipmentData",
+      "game_value": 50
+    },
+    {
+      "symbol": "INFILTRATOR",
+      "id": 16,
+      "name": "Infiltrator",
+      "kind": "EquipmentData",
+      "game_value": 51
+    },
+    {
+      "symbol": "CHARGE_BOOTS",
+      "id": 17,
+      "name": "Charge Boots",
+      "kind": "EquipmentData",
+      "game_value": 54
+    },
+    {
+      "symbol": "HYPNOMATIC",
+      "id": 18,
+      "name": "Hypnomatic",
+      "kind": "EquipmentData",
+      "game_value": 55
+    },
+    {
+      "symbol": "CLANK_ZAPPER",
+      "id": 101,
+      "name": "Clank Zapper",
+      "kind": "WeaponData",
+      "game_value": 9
+    },
+    {
+      "symbol": "BOMB_GLOVE",
+      "id": 102,
+      "name": "Bomb Glove",
+      "kind": "WeaponData",
+      "game_value": 12
+    },
+    {
+      "symbol": "VISIBOMB_GUN",
+      "id": 103,
+      "name": "Visibomb Gun",
+      "kind": "WeaponData",
+      "game_value": 14
+    },
+    {
+      "symbol": "SHEEPINATOR",
+      "id": 104,
+      "name": "Sheepinator",
+      "kind": "WeaponData",
+      "game_value": 16
+    },
+    {
+      "symbol": "DECOY_GLOVE",
+      "id": 105,
+      "name": "Decoy Glove",
+      "kind": "WeaponData",
+      "game_value": 17
+    },
+    {
+      "symbol": "TESLA_CLAW",
+      "id": 106,
+      "name": "Tesla Claw",
+      "kind": "WeaponData",
+      "game_value": 18
+    },
+    {
+      "symbol": "CHOPPER",
+      "id": 107,
+      "name": "Chopper",
+      "kind": "WeaponData",
+      "game_value": 22
+    },
+    {
+      "symbol": "PULSE_RIFLE",
+      "id": 108,
+      "name": "Pulse Rifle",
+      "kind": "WeaponData",
+      "game_value": 23
+    },
+    {
+      "symbol": "SEEKER_GUN",
+      "id": 109,
+      "name": "Seeker Gun",
+      "kind": "WeaponData",
+      "game_value": 24
+    },
+    {
+      "symbol": "HOVERBOMB_GUN",
+      "id": 110,
+      "name": "Hoverbomb Gun",
+      "kind": "WeaponData",
+      "game_value": 25
+    },
+    {
+      "symbol": "BLITZ_GUN",
+      "id": 111,
+      "name": "Blitz Gun",
+      "kind": "WeaponData",
+      "game_value": 26
+    },
+    {
+      "symbol": "MINIROCKET_TUBE",
+      "id": 112,
+      "name": "Minirocket Tube",
+      "kind": "WeaponData",
+      "game_value": 27
+    },
+    {
+      "symbol": "PLASMA_COIL",
+      "id": 113,
+      "name": "Plasma Coil",
+      "kind": "WeaponData",
+      "game_value": 28
+    },
+    {
+      "symbol": "LAVA_GUN",
+      "id": 114,
+      "name": "Lava Gun",
+      "kind": "WeaponData",
+      "game_value": 29
+    },
+    {
+      "symbol": "LANCER",
+      "id": 115,
+      "name": "Lancer",
+      "kind": "WeaponData",
+      "game_value": 30
+    },
+    {
+      "symbol": "SYNTHENOID",
+      "id": 116,
+      "name": "Synthenoid",
+      "kind": "WeaponData",
+      "game_value": 31
+    },
+    {
+      "symbol": "SPIDERBOT_GLOVE",
+      "id": 117,
+      "name": "Spiderbot Glove",
+      "kind": "WeaponData",
+      "game_value": 32
+    },
+    {
+      "symbol": "BOUNCER",
+      "id": 118,
+      "name": "Bouncer",
+      "kind": "WeaponData",
+      "game_value": 37
+    },
+    {
+      "symbol": "MINITURRET_GLOVE",
+      "id": 119,
+      "name": "Miniturret Glove",
+      "kind": "WeaponData",
+      "game_value": 41
+    },
+    {
+      "symbol": "GRAVITY_BOMB",
+      "id": 120,
+      "name": "Gravity Bomb",
+      "kind": "WeaponData",
+      "game_value": 42
+    },
+    {
+      "symbol": "ZODIAC",
+      "id": 121,
+      "name": "Zodiac",
+      "kind": "WeaponData",
+      "game_value": 43
+    },
+    {
+      "symbol": "RYNO_II",
+      "id": 122,
+      "name": "RYNO II",
+      "kind": "WeaponData",
+      "game_value": 44
+    },
+    {
+      "symbol": "SHIELD_CHARGER",
+      "id": 123,
+      "name": "Shield Charger",
+      "kind": "WeaponData",
+      "game_value": 45
+    },
+    {
+      "symbol": "WALLOPER",
+      "id": 124,
+      "name": "Walloper",
+      "kind": "WeaponData",
+      "game_value": 53
+    },
+    {
+      "symbol": "HEAVY_LANCER",
+      "id": 125,
+      "name": "Heavy Lancer",
+      "kind": "WeaponData",
+      "game_value": 60
+    },
+    {
+      "symbol": "KILONOID",
+      "id": 126,
+      "name": "Kilonoid",
+      "kind": "WeaponData",
+      "game_value": 61
+    },
+    {
+      "symbol": "PLASMA_STORM",
+      "id": 127,
+      "name": "Plasma Storm",
+      "kind": "WeaponData",
+      "game_value": 62
+    },
+    {
+      "symbol": "METEOR_GUN",
+      "id": 128,
+      "name": "Meteor Gun",
+      "kind": "WeaponData",
+      "game_value": 63
+    },
+    {
+      "symbol": "MEGATURRET_GLOVE",
+      "id": 129,
+      "name": "Megaturret Glove",
+      "kind": "WeaponData",
+      "game_value": 64
+    },
+    {
+      "symbol": "MULTISTAR",
+      "id": 130,
+      "name": "Multi-Star",
+      "kind": "WeaponData",
+      "game_value": 65
+    },
+    {
+      "symbol": "VAPORIZER",
+      "id": 131,
+      "name": "Vaporizer",
+      "kind": "WeaponData",
+      "game_value": 66
+    },
+    {
+      "symbol": "HK_22",
+      "id": 132,
+      "name": "HK-22",
+      "kind": "WeaponData",
+      "game_value": 67
+    },
+    {
+      "symbol": "BLITZ_CANNON",
+      "id": 133,
+      "name": "Blitz Cannon",
+      "kind": "WeaponData",
+      "game_value": 68
+    },
+    {
+      "symbol": "MEGAROCKET_CANNON",
+      "id": 134,
+      "name": "Megarocket Cannon",
+      "kind": "WeaponData",
+      "game_value": 69
+    },
+    {
+      "symbol": "TETRABOMB_GUN",
+      "id": 135,
+      "name": "Tetrabomb Gun",
+      "kind": "WeaponData",
+      "game_value": 70
+    },
+    {
+      "symbol": "MINI_NUKE",
+      "id": 136,
+      "name": "Mini-Nuke",
+      "kind": "WeaponData",
+      "game_value": 71
+    },
+    {
+      "symbol": "BLACK_SHEEPINATOR",
+      "id": 137,
+      "name": "Black Sheepinator",
+      "kind": "WeaponData",
+      "game_value": 72
+    },
+    {
+      "symbol": "CLANK_SHOCKER",
+      "id": 138,
+      "name": "Clank Shocker",
+      "kind": "WeaponData",
+      "game_value": 73
+    },
+    {
+      "symbol": "HEAVY_BOUNCER",
+      "id": 139,
+      "name": "Heavy Bouncer",
+      "kind": "WeaponData",
+      "game_value": 76
+    },
+    {
+      "symbol": "TESLA_BARRIER",
+      "id": 140,
+      "name": "Tesla Barrier",
+      "kind": "WeaponData",
+      "game_value": 77
+    },
+    {
+      "symbol": "TANKBOT_GLOVE",
+      "id": 141,
+      "name": "Tankbot Glove",
+      "kind": "WeaponData",
+      "game_value": 78
+    },
+    {
+      "symbol": "MEGA_HEAVY_LANCER",
+      "id": 142,
+      "name": "Mega Heavy Lancer",
+      "kind": "WeaponData",
+      "game_value": 79
+    },
+    {
+      "symbol": "MEGA_MINI_NUKE",
+      "id": 143,
+      "name": "Mega Mini-Nuke",
+      "kind": "WeaponData",
+      "game_value": 81
+    },
+    {
+      "symbol": "MEGA_MULTISTAR",
+      "id": 144,
+      "name": "Mega Multi-Star",
+      "kind": "WeaponData",
+      "game_value": 83
+    },
+    {
+      "symbol": "MEGA_HK_22",
+      "id": 145,
+      "name": "Mega HK-22",
+      "kind": "WeaponData",
+      "game_value": 85
+    },
+    {
+      "symbol": "MEGA_VAPORIZER",
+      "id": 146,
+      "name": "Mega Vaporizer",
+      "kind": "WeaponData",
+      "game_value": 87
+    },
+    {
+      "symbol": "MEGA_MEGATURRET_GLOVE",
+      "id": 147,
+      "name": "Mega Megaturret Glove",
+      "kind": "WeaponData",
+      "game_value": 89
+    },
+    {
+      "symbol": "MEGA_BLITZ_CANNON",
+      "id": 148,
+      "name": "Mega Blitz Cannon",
+      "kind": "WeaponData",
+      "game_value": 91
+    },
+    {
+      "symbol": "MEGA_KILONOID",
+      "id": 149,
+      "name": "Mega Kilonoid",
+      "kind": "WeaponData",
+      "game_value": 93
+    },
+    {
+      "symbol": "MEGA_METEOR_GUN",
+      "id": 150,
+      "name": "Mega Meteor Gun",
+      "kind": "WeaponData",
+      "game_value": 95
+    },
+    {
+      "symbol": "MEGA_HEAVY_BOUNCER",
+      "id": 151,
+      "name": "Mega Heavy Bouncer",
+      "kind": "WeaponData",
+      "game_value": 97
+    },
+    {
+      "symbol": "MEGA_MEGAROCKET_CANNON",
+      "id": 152,
+      "name": "Mega Megarocket Cannon",
+      "kind": "WeaponData",
+      "game_value": 99
+    },
+    {
+      "symbol": "MEGA_PLASMA_STORM",
+      "id": 153,
+      "name": "Mega Plasma Storm",
+      "kind": "WeaponData",
+      "game_value": 101
+    },
+    {
+      "symbol": "MEGA_TETRABOMB_GUN",
+      "id": 154,
+      "name": "Mega Tetrabomb Gun",
+      "kind": "WeaponData",
+      "game_value": 103
+    },
+    {
+      "symbol": "MEGA_TANKBOT_GLOVE",
+      "id": 155,
+      "name": "Mega Tankbot Glove",
+      "kind": "WeaponData",
+      "game_value": 105
+    },
+    {
+      "symbol": "MEGA_TESLA_BARRIER",
+      "id": 156,
+      "name": "Mega Tesla Barrier",
+      "kind": "WeaponData",
+      "game_value": 107
+    },
+    {
+      "symbol": "MEGA_TESLA_CLAW",
+      "id": 157,
+      "name": "Mega Tesla Claw",
+      "kind": "WeaponData",
+      "game_value": 114
+    },
+    {
+      "symbol": "MEGA_BOMB_GLOVE",
+      "id": 158,
+      "name": "Mega Bomb Glove",
+      "kind": "WeaponData",
+      "game_value": 115
+    },
+    {
+      "symbol": "MEGA_WALLOPER",
+      "id": 159,
+      "name": "Mega Walloper",
+      "kind": "WeaponData",
+      "game_value": 116
+    },
+    {
+      "symbol": "MEGA_VISIBOMB_GUN",
+      "id": 160,
+      "name": "Mega Visibomb Gun",
+      "kind": "WeaponData",
+      "game_value": 117
+    },
+    {
+      "symbol": "MEGA_DECOY_GLOVE",
+      "id": 161,
+      "name": "Mega Decoy Glove",
+      "kind": "WeaponData",
+      "game_value": 118
+    },
+    {
+      "symbol": "ULTRA_HEAVY_LANCER",
+      "id": 162,
+      "name": "Ultra Heavy Lancer",
+      "kind": "WeaponData",
+      "game_value": 80
+    },
+    {
+      "symbol": "ULTRA_MINI_NUKE",
+      "id": 163,
+      "name": "Ultra Mini-Nuke",
+      "kind": "WeaponData",
+      "game_value": 82
+    },
+    {
+      "symbol": "ULTRA_MULTISTAR",
+      "id": 164,
+      "name": "Ultra Multi-Star",
+      "kind": "WeaponData",
+      "game_value": 84
+    },
+    {
+      "symbol": "ULTRA_HK_22",
+      "id": 165,
+      "name": "Ultra HK-22",
+      "kind": "WeaponData",
+      "game_value": 86
+    },
+    {
+      "symbol": "ULTRA_VAPORIZER",
+      "id": 166,
+      "name": "Ultra Vaporizer",
+      "kind": "WeaponData",
+      "game_value": 88
+    },
+    {
+      "symbol": "ULTRA_MEGATURRET_GLOVE",
+      "id": 167,
+      "name": "Ultra Megaturret Glove",
+      "kind": "WeaponData",
+      "game_value": 90
+    },
+    {
+      "symbol": "ULTRA_BLITZ_CANNON",
+      "id": 168,
+      "name": "Ultra Blitz Cannon",
+      "kind": "WeaponData",
+      "game_value": 92
+    },
+    {
+      "symbol": "ULTRA_KILONOID",
+      "id": 169,
+      "name": "Ultra Kilonoid",
+      "kind": "WeaponData",
+      "game_value": 94
+    },
+    {
+      "symbol": "ULTRA_METEOR_GUN",
+      "id": 170,
+      "name": "Ultra Meteor Gun",
+      "kind": "WeaponData",
+      "game_value": 96
+    },
+    {
+      "symbol": "ULTRA_HEAVY_BOUNCER",
+      "id": 171,
+      "name": "Ultra Heavy Bouncer",
+      "kind": "WeaponData",
+      "game_value": 98
+    },
+    {
+      "symbol": "ULTRA_MEGAROCKET_CANNON",
+      "id": 172,
+      "name": "Ultra Megarocket Cannon",
+      "kind": "WeaponData",
+      "game_value": 100
+    },
+    {
+      "symbol": "ULTRA_PLASMA_STORM",
+      "id": 173,
+      "name": "Ultra Plasma Storm",
+      "kind": "WeaponData",
+      "game_value": 102
+    },
+    {
+      "symbol": "ULTRA_TETRABOMB_GUN",
+      "id": 174,
+      "name": "Ultra Tetrabomb Gun",
+      "kind": "WeaponData",
+      "game_value": 104
+    },
+    {
+      "symbol": "ULTRA_TANKBOT_GLOVE",
+      "id": 175,
+      "name": "Ultra Tankbot Glove",
+      "kind": "WeaponData",
+      "game_value": 106
+    },
+    {
+      "symbol": "ULTRA_TESLA_BARRIER",
+      "id": 176,
+      "name": "Ultra Tesla Barrier",
+      "kind": "WeaponData",
+      "game_value": 108
+    },
+    {
+      "symbol": "OOZLA_COORDS",
+      "id": 201,
+      "name": "Oozla Coordinates",
+      "kind": "CoordData",
+      "game_value": 1
+    },
+    {
+      "symbol": "MAKTAR_NEBULA_COORDS",
+      "id": 202,
+      "name": "Maktar Nebula Coordinates",
+      "kind": "CoordData",
+      "game_value": 2
+    },
+    {
+      "symbol": "ENDAKO_COORDS",
+      "id": 203,
+      "name": "Endako Coordinates",
+      "kind": "CoordData",
+      "game_value": 3
+    },
+    {
+      "symbol": "BARLOW_COORDS",
+      "id": 204,
+      "name": "Barlow Coordinates",
+      "kind": "CoordData",
+      "game_value": 4
+    },
+    {
+      "symbol": "FELTZIN_SYSTEM_COORDS",
+      "id": 205,
+      "name": "Feltzin System Coordinates",
+      "kind": "CoordData",
+      "game_value": 5
+    },
+    {
+      "symbol": "NOTAK_COORDS",
+      "id": 206,
+      "name": "Notak Coordinates",
+      "kind": "CoordData",
+      "game_value": 6
+    },
+    {
+      "symbol": "SIBERIUS_COORDS",
+      "id": 207,
+      "name": "Siberius Coordinates",
+      "kind": "CoordData",
+      "game_value": 7
+    },
+    {
+      "symbol": "TABORA_COORDS",
+      "id": 208,
+      "name": "Tabora Coordinates",
+      "kind": "CoordData",
+      "game_value": 8
+    },
+    {
+      "symbol": "DOBBO_COORDS",
+      "id": 209,
+      "name": "Dobbo Coordinates",
+      "kind": "CoordData",
+      "game_value": 9
+    },
+    {
+      "symbol": "HRUGIS_CLOUD_COORDS",
+      "id": 210,
+      "name": "Hrugis Cloud Coordinates",
+      "kind": "CoordData",
+      "game_value": 10
+    },
+    {
+      "symbol": "JOBA_COORDS",
+      "id": 211,
+      "name": "Joba Coordinates",
+      "kind": "CoordData",
+      "game_value": 11
+    },
+    {
+      "symbol": "TODANO_COORDS",
+      "id": 212,
+      "name": "Todano Coordinates",
+      "kind": "CoordData",
+      "game_value": 12
+    },
+    {
+      "symbol": "BOLDAN_COORDS",
+      "id": 213,
+      "name": "Boldan Coordinates",
+      "kind": "CoordData",
+      "game_value": 13
+    },
+    {
+      "symbol": "ARANOS_PRISON_COORDS",
+      "id": 214,
+      "name": "Aranos Prison Coordinates",
+      "kind": "CoordData",
+      "game_value": 14
+    },
+    {
+      "symbol": "GORN_COORDS",
+      "id": 215,
+      "name": "Gorn Coordinates",
+      "kind": "CoordData",
+      "game_value": 15
+    },
+    {
+      "symbol": "SNIVELAK_COORDS",
+      "id": 216,
+      "name": "Snivelak Coordinates",
+      "kind": "CoordData",
+      "game_value": 16
+    },
+    {
+      "symbol": "SMOLG_COORDS",
+      "id": 217,
+      "name": "Smolg Coordinates",
+      "kind": "CoordData",
+      "game_value": 17
+    },
+    {
+      "symbol": "DAMOSEL_COORDS",
+      "id": 218,
+      "name": "Damosel Coordinates",
+      "kind": "CoordData",
+      "game_value": 18
+    },
+    {
+      "symbol": "GRELBIN_COORDS",
+      "id": 219,
+      "name": "Grelbin Coordinates",
+      "kind": "CoordData",
+      "game_value": 19
+    },
+    {
+      "symbol": "YEEDIL_COORDS",
+      "id": 220,
+      "name": "Yeedil Coordinates",
+      "kind": "CoordData",
+      "game_value": 20
+    },
+    {
+      "symbol": "PLATINUM_BOLT",
+      "id": 301,
+      "name": "Platinum Bolt",
+      "kind": "CollectableData"
+    },
+    {
+      "symbol": "NANOTECH_BOOST",
+      "id": 302,
+      "name": "Nanotech Boost",
+      "kind": "CollectableData"
+    },
+    {
+      "symbol": "HYPNOMATIC_PART",
+      "id": 303,
+      "name": "Hypnomatic Part",
+      "kind": "CollectableData"
+    },
+    {
+      "symbol": "BOLT_PACK",
+      "id": 304,
+      "name": "Bolt Pack",
+      "kind": "CollectableData"
+    },
+    {
+      "symbol": "WRENCH_UPGRADE",
+      "id": 401,
+      "name": "OmniWrench Upgrade",
+      "kind": "ProgressiveUpgradeData"
+    },
+    {
+      "symbol": "ARMOR_UPGRADE",
+      "id": 402,
+      "name": "Armor Upgrade",
+      "kind": "ProgressiveUpgradeData"
+    }
+  ],
+  "locations": [
+    {
+      "symbol": "OOZLA_OUTSIDE_MEGACORP_STORE",
+      "id": 10,
+      "name": "Oozla: Outside Megacorp Store - Dynamo",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "OOZLA_END_STORE_CUTSCENE",
+      "id": 11,
+      "name": "Oozla: End of Store Cutscene",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "OOZLA_MEGACORP_SCIENTIST",
+      "id": 12,
+      "name": "Oozla: Megacorp Scientist - Tractor Beam",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "OOZLA_TRACTOR_PUZZLE_PB",
+      "id": 13,
+      "name": "Oozla: Tractor Puzzle - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "OOZLA_SWAMP_RUINS_PB",
+      "id": 14,
+      "name": "Oozla: Swamp Ruins - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "OOZLA_SWAMP_MONSTER_II",
+      "id": 15,
+      "name": "Oozla: Swamp Monster II - Box Breaker",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "MAKTAR_ARENA_CHALLENGE",
+      "id": 20,
+      "name": "Maktar: Arena Challenge - Electrolyzer",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "MAKTAR_PHOTO_BOOTH",
+      "id": 21,
+      "name": "Maktar: Photo Booth",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "MAKTAR_DEACTIVATE_JAMMING_ARRAY",
+      "id": 22,
+      "name": "Maktar: Deactivate Jamming Array",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "MAKTAR_JAMMING_ARRAY_PB",
+      "id": 23,
+      "name": "Maktar: Jamming Array - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "MAKTAR_CRANE_PB",
+      "id": 24,
+      "name": "Maktar: Crane - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "ENDAKO_CLANK_APARTMENT_SS",
+      "id": 30,
+      "name": "Endako: Clank's Apartment - Swingshot",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "ENDAKO_CLANK_APARTMENT_GB",
+      "id": 31,
+      "name": "Endako: Clank's Apartment - Grindboots",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "ENDAKO_RESCUE_CLANK_HELI",
+      "id": 32,
+      "name": "Endako: Rescue Clank Heli-Pack",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "ENDAKO_RESCUE_CLANK_THRUSTER",
+      "id": 33,
+      "name": "Endako: Rescue Clank Thruster-Pack",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "ENDAKO_LEDGE_PB",
+      "id": 34,
+      "name": "Endako: Ledge - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "ENDAKO_CRANE_PB",
+      "id": 35,
+      "name": "Endako: Crane - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "ENDAKO_CRANE_NT",
+      "id": 36,
+      "name": "Endako: Crane - Nanotech Boost",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "BARLOW_INVENTOR",
+      "id": 40,
+      "name": "Barlow: Inventor - Thermanator",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "BARLOW_HOVERBIKE_RACE_TRANSMISSION",
+      "id": 41,
+      "name": "Barlow: Hoverbike Race Transmission",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "BARLOW_HOVERBIKE_RACE_PB",
+      "id": 42,
+      "name": "Barlow: Hoverbike Race - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "BARLOW_HOUND_CAVE_PB",
+      "id": 43,
+      "name": "Barlow: Hound Cave - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "FELTZIN_DEFEAT_THUG_SHIPS",
+      "id": 50,
+      "name": "Feltzin: Defeat Thug Ships",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "FELTZIN_RACE_PB",
+      "id": 51,
+      "name": "Feltzin: Race Through the Asteroids - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "FELTZIN_CARGO_BAY_NT",
+      "id": 52,
+      "name": "Feltzin: Cargo Bay - Nanotech Boost",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "FELTZIN_DESTROY_SPACE_WASPS",
+      "id": 53,
+      "name": "Feltzin: Destroy Space Wasps",
+      "vendor": false,
+      "enabled_when": "lambda options_dict: options_dict['extra_spaceship_challenge_locations']",
+      "flag": "lambda ram: ram.feltzin_challenge_wins + 1"
+    },
+    {
+      "symbol": "FELTZIN_FIGHT_ACE_THUGS",
+      "id": 54,
+      "name": "Feltzin: Fight Ace Thug Ships",
+      "vendor": false,
+      "enabled_when": "lambda options_dict: options_dict['extra_spaceship_challenge_locations']",
+      "flag": "lambda ram: ram.feltzin_challenge_wins + 2"
+    },
+    {
+      "symbol": "FELTZIN_RACE",
+      "id": 55,
+      "name": "Feltzin: Race Through the Asteroids",
+      "vendor": false,
+      "enabled_when": "lambda options_dict: options_dict['extra_spaceship_challenge_locations']",
+      "flag": "lambda ram: ram.feltzin_challenge_wins + 3"
+    },
+    {
+      "symbol": "NOTAK_TOP_PIER_TELESCREEN",
+      "id": 60,
+      "name": "Notak: Top of Pier Telescreen",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "NOTAK_WORKER_BOTS",
+      "id": 61,
+      "name": "Notak: Worker Bots",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "NOTAK_BEHIND_BUILDING_PB",
+      "id": 62,
+      "name": "Notak: Behind Building - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "NOTAK_PROMENADE_SIGN_PB",
+      "id": 63,
+      "name": "Notak: Promenade Sign - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "NOTAK_TIMED_DYNAMO_PB",
+      "id": 64,
+      "name": "Notak: Timed Dynamo - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "NOTAK_PROMENADE_END_NT",
+      "id": 65,
+      "name": "Notak: Promenade End - Nanotech Boost",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "SIBERIUS_DEFEAT_THIEF",
+      "id": 70,
+      "name": "Siberius: Defeat Thief",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "SIBERIUS_FLAMEBOT_LEDGE_PB",
+      "id": 71,
+      "name": "Siberius: Flamebot Ledge - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "SIBERIUS_FENCED_AREA_PB",
+      "id": 72,
+      "name": "Siberius: Fenced Area - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "TABORA_MEET_ANGELA",
+      "id": 80,
+      "name": "Tabora: Meet Angela",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "TABORA_UNDERGROUND_MINES_END",
+      "id": 81,
+      "name": "Tabora: Underground Mines - Glider",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "TABORA_UNDERGROUND_MINES_PB",
+      "id": 82,
+      "name": "Tabora: Underground Mines - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "TABORA_CANYON_GLIDE_PB",
+      "id": 83,
+      "name": "Tabora: Canyon Glide - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "TABORA_NORTHEAST_DESERT_PB",
+      "id": 84,
+      "name": "Tabora: Northeast Desert - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "TABORA_CANYON_GLIDE_PILLAR_NT",
+      "id": 85,
+      "name": "Tabora: Canyon Glide Pillar - Nanotech Boost",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "TABORA_OMNIWRENCH_10000",
+      "id": 86,
+      "name": "Tabora: OmniWrench 10000",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.tabora_wrench_cutscene_flag"
+    },
+    {
+      "symbol": "DOBBO_DEFEAT_THUG_LEADER",
+      "id": 90,
+      "name": "Dobbo: Defeat Thug Leader",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "DOBBO_FACILITY_TERMINAL",
+      "id": 91,
+      "name": "Dobbo: Facility Terminal",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "DOBBO_SPIDERBOT_ROOM_PB",
+      "id": 92,
+      "name": "Dobbo: Spiderbot Room - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "DOBBO_FACILITY_GLIDE_PB",
+      "id": 93,
+      "name": "Dobbo: Facility Glide End - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "DOBBO_FACILITY_GLIDE_NT",
+      "id": 94,
+      "name": "Dobbo: Facility Glide Beginning - Nanotech Boost",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "HRUGIS_DESTROY_DEFENSES",
+      "id": 100,
+      "name": "Hrugis Cloud: Destroy Defenses",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "HRUGIS_RACE_PB",
+      "id": 101,
+      "name": "Hrugis Cloud: Race Through the Disposal Facility - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "HRUGIS_SABOTEURS",
+      "id": 102,
+      "name": "Hrugis Cloud: Take Out the Saboteurs",
+      "vendor": false,
+      "enabled_when": "lambda options_dict: options_dict['extra_spaceship_challenge_locations']",
+      "flag": "lambda ram: ram.hrugis_challenge_wins + 1"
+    },
+    {
+      "symbol": "HRUGIS_BERSERK_DRONES",
+      "id": 103,
+      "name": "Hrugis Cloud: Destroy the Berserk Repair Drones",
+      "vendor": false,
+      "enabled_when": "lambda options_dict: options_dict['extra_spaceship_challenge_locations']",
+      "flag": "lambda ram: ram.hrugis_challenge_wins + 2"
+    },
+    {
+      "symbol": "HRUGIS_RACE",
+      "id": 104,
+      "name": "Hrugis Cloud: Race Through the Disposal Facility",
+      "vendor": false,
+      "enabled_when": "lambda options_dict: options_dict['extra_spaceship_challenge_locations']",
+      "flag": "lambda ram: ram.hrugis_challenge_wins + 3"
+    },
+    {
+      "symbol": "JOBA_FIRST_HOVERBIKE_RACE",
+      "id": 110,
+      "name": "Joba: First Hoverbike Race - Charge Boots",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "JOBA_SHADY_SALESMAN",
+      "id": 111,
+      "name": "Joba: Shady Salesman - Levitator",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "JOBA_ARENA_BATTLE",
+      "id": 112,
+      "name": "Joba: Arena Battle - Gravity Boots",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "JOBA_ARENA_CAGE_MATCH",
+      "id": 113,
+      "name": "Joba: Arena Cage Match - Infiltrator",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "JOBA_HIDDEN_CLIFF_PB",
+      "id": 114,
+      "name": "Joba: Hidden Cliff - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "JOBA_LEVITATOR_TOWER_PB",
+      "id": 115,
+      "name": "Joba: Levitator Tower - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "JOBA_HOVERBIKE_RACE_SHORTCUT_NT",
+      "id": 116,
+      "name": "Joba: Hoverbike Race Shortcut - Nanotech Boost",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "JOBA_TIMED_DYNAMO_NT",
+      "id": 117,
+      "name": "Joba: Timed Dynamo Course - Nanotech Boost",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "TODANO_SEARCH_ROCKET_SILO",
+      "id": 120,
+      "name": "Todano: Search Rocket Silo",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "TODANO_STUART_ZURGO_TRADE",
+      "id": 121,
+      "name": "Todano: Stuart Zurgo Trade - Armor Magnetizer",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "TODANO_FACILITY_INTERIOR",
+      "id": 122,
+      "name": "Todano: Facility Interior - Sheepinator",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "TODANO_NEAR_STUART_ZURGO_PB",
+      "id": 123,
+      "name": "Todano: Near Stuart Zurgo - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "TODANO_END_TOUR_PB",
+      "id": 124,
+      "name": "Todano: End of Tour - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "TODANO_SPIDERBOT_CONVEYOR_PB",
+      "id": 125,
+      "name": "Todano: Spiderbot Conveyor - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "TODANO_ROCKET_SILO_NT",
+      "id": 126,
+      "name": "Todano: Rocket Silo - Nanotech Boost",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "BOLDAN_FIND_FIZZWIDGET",
+      "id": 130,
+      "name": "Boldan: Find Fizzwidget",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "BOLDAN_SPIDERBOT_ALLEY_PB",
+      "id": 131,
+      "name": "Boldan: Spiderbot Alley - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "BOLDAN_FLOATING_PLATFORM_PB",
+      "id": 132,
+      "name": "Boldan: Floating Platform - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "BOLDAN_UPPER_DOME_PB",
+      "id": 133,
+      "name": "Boldan: Upper Dome - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "BOLDAN_FOUNTAIN_NT",
+      "id": 134,
+      "name": "Boldan: Fountain - Nanotech Boost",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "ARANOS_CONTROL_ROOM",
+      "id": 140,
+      "name": "Aranos: Control Room",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "ARANOS_PLUMBER",
+      "id": 141,
+      "name": "Aranos: Plumber - Qwark Statuette",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "ARANOS_UNDER_SHIP_PB",
+      "id": 142,
+      "name": "Aranos: Under Ship - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "ARANOS_OMNIWRENCH_12000",
+      "id": 143,
+      "name": "Aranos: OmniWrench 12000",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.aranos_wrench_cutscene_flag"
+    },
+    {
+      "symbol": "GORN_DEFEAT_THUG_FLEET",
+      "id": 150,
+      "name": "Gorn: Defeat Thug Fleet",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "GORN_RACE_PB",
+      "id": 151,
+      "name": "Gorn: Race Through the Docking Bays - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "GORN_FIGHT_BANDITS",
+      "id": 152,
+      "name": "Gorn: Fight the Bandits",
+      "vendor": false,
+      "enabled_when": "lambda options_dict: options_dict['extra_spaceship_challenge_locations']",
+      "flag": "lambda ram: ram.gorn_challenge_wins + 1"
+    },
+    {
+      "symbol": "GORN_GHOST_SHIP",
+      "id": 153,
+      "name": "Gorn: Defeat the Ghost Ship",
+      "vendor": false,
+      "enabled_when": "lambda options_dict: options_dict['extra_spaceship_challenge_locations']",
+      "flag": "lambda ram: ram.gorn_challenge_wins + 2"
+    },
+    {
+      "symbol": "GORN_RACE",
+      "id": 154,
+      "name": "Gorn: Race Through the Docking Bays",
+      "vendor": false,
+      "enabled_when": "lambda options_dict: options_dict['extra_spaceship_challenge_locations']",
+      "flag": "lambda ram: ram.gorn_challenge_wins + 3"
+    },
+    {
+      "symbol": "SNIVELAK_RESCUE_ANGELA",
+      "id": 160,
+      "name": "Snivelak: Rescue Angela",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "SNIVELAK_DYNAMO_PLATFORMS_PB",
+      "id": 161,
+      "name": "Snivelak: Dynamo Platforms - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "SNIVELAK_SWINGSHOT_TOWER_NT",
+      "id": 162,
+      "name": "Snivelak: Swingshot Tower - Nanotech Boost",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "SMOLG_BALLOON_TRANSMISSION",
+      "id": 170,
+      "name": "Smolg: Balloon Transmission",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "SMOLG_DISTRIBUTION_FACILITY_END",
+      "id": 171,
+      "name": "Smolg: Distribution Facility End - Hypnomatic Part",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.hypnomatic_part1"
+    },
+    {
+      "symbol": "SMOLG_MUTANT_CRAB",
+      "id": 172,
+      "name": "Smolg: Mutant Crab",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "SMOLG_FLOATING_PLATFORM_PB",
+      "id": 173,
+      "name": "Smolg: Floating Platform - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "SMOLG_WAREHOUSE_PB",
+      "id": 174,
+      "name": "Smolg: Warehouse - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "DAMOSEL_HYPNOTIST",
+      "id": 180,
+      "name": "Damosel: Hypnotist",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "DAMOSEL_TRAIN_RAILS",
+      "id": 181,
+      "name": "Damosel: Train Rails - Hypnomatic Part",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.hypnomatic_part2"
+    },
+    {
+      "symbol": "DAMOSEL_DEFEAT_MOTHERSHIP",
+      "id": 182,
+      "name": "Damosel: Defeat Mothership - Mapper",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "DAMOSEL_FROZEN_FOUNTAIN_PB",
+      "id": 183,
+      "name": "Damosel: Frozen Fountain - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "DAMOSEL_PYRAMID_PB",
+      "id": 184,
+      "name": "Damosel: Pyramid - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "GRELBIN_FIND_ANGELA",
+      "id": 190,
+      "name": "Grelbin: Find Angela",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "GRELBIN_MYSTIC_MORE_MOONSTONES",
+      "id": 191,
+      "name": "Grelbin: Mystic More Moonstones - Hypnomatic Part",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.hypnomatic_part3"
+    },
+    {
+      "symbol": "GRELBIN_ICE_PLAINS_PB",
+      "id": 192,
+      "name": "Grelbin: Ice Plains - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "GRELBIN_UNDERWATER_TUNNEL_PB",
+      "id": 193,
+      "name": "Grelbin: Underwater Tunnel - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "GRELBIN_YETI_CAVE_PB",
+      "id": 194,
+      "name": "Grelbin: Yeti Cave - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "YEEDIL_BRIDGE_GRINDRAIL_PB",
+      "id": 200,
+      "name": "Yeedil: Bridge Grindrail - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "YEEDIL_TRACTOR_PILLAR_PB",
+      "id": 201,
+      "name": "Yeedil: Tractor Pillar - Platinum Bolt",
+      "vendor": false,
+      "enabled_when": null,
+      "flag": null
+    },
+    {
+      "symbol": "OOZLA_VENDOR_WEAPON_1",
+      "id": 300,
+      "name": "Oozla: Megacorp Vendor - New Weapon 1",
+      "vendor": true,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.secondary_inventory + Items.CHOPPER.offset"
+    },
+    {
+      "symbol": "OOZLA_VENDOR_WEAPON_2",
+      "id": 301,
+      "name": "Oozla: Megacorp Vendor - New Weapon 2",
+      "vendor": true,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.secondary_inventory + Items.BLITZ_GUN.offset"
+    },
+    {
+      "symbol": "ENDAKO_VENDOR_WEAPON_1",
+      "id": 302,
+      "name": "Endako: Megacorp Vendor - New Weapon 1",
+      "vendor": true,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.secondary_inventory + Items.PULSE_RIFLE.offset"
+    },
+    {
+      "symbol": "ENDAKO_VENDOR_WEAPON_2",
+      "id": 303,
+      "name": "Endako: Megacorp Vendor - New Weapon 2",
+      "vendor": true,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.secondary_inventory + Items.MINITURRET_GLOVE.offset"
+    },
+    {
+      "symbol": "BARLOW_VENDOR_WEAPON",
+      "id": 304,
+      "name": "Barlow: Megacorp Vendor - New Weapon",
+      "vendor": true,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.secondary_inventory + Items.SEEKER_GUN.offset"
+    },
+    {
+      "symbol": "NOTAK_VENDOR_WEAPON",
+      "id": 305,
+      "name": "Notak: Megacorp Vendor - New Weapon",
+      "vendor": true,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.secondary_inventory + Items.SYNTHENOID.offset"
+    },
+    {
+      "symbol": "TABORA_VENDOR_WEAPON_1",
+      "id": 306,
+      "name": "Tabora: Megacorp Vendor - New Weapon 1",
+      "vendor": true,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.secondary_inventory + Items.LAVA_GUN.offset"
+    },
+    {
+      "symbol": "TABORA_VENDOR_WEAPON_2",
+      "id": 307,
+      "name": "Tabora: Megacorp Vendor - New Weapon 2",
+      "vendor": true,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.secondary_inventory + Items.BOUNCER.offset"
+    },
+    {
+      "symbol": "DOBBO_VENDOR_WEAPON",
+      "id": 308,
+      "name": "Dobbo: Megacorp Vendor - New Weapon",
+      "vendor": true,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.secondary_inventory + Items.MINIROCKET_TUBE.offset"
+    },
+    {
+      "symbol": "JOBA_VENDOR_WEAPON_1",
+      "id": 309,
+      "name": "Joba: Megacorp Vendor - New Weapon 1",
+      "vendor": true,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.secondary_inventory + Items.SPIDERBOT_GLOVE.offset"
+    },
+    {
+      "symbol": "JOBA_VENDOR_WEAPON_2",
+      "id": 310,
+      "name": "Joba: Megacorp Vendor - New Weapon 2",
+      "vendor": true,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.secondary_inventory + Items.PLASMA_COIL.offset"
+    },
+    {
+      "symbol": "TODANO_VENDOR_WEAPON",
+      "id": 311,
+      "name": "Todano: Megacorp Vendor - New Weapon",
+      "vendor": true,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.secondary_inventory + Items.HOVERBOMB_GUN.offset"
+    },
+    {
+      "symbol": "ARANOS_VENDOR_WEAPON_1",
+      "id": 312,
+      "name": "Aranos Prison: Megacorp Vendor - New Weapon 1",
+      "vendor": true,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.secondary_inventory + Items.SHIELD_CHARGER.offset"
+    },
+    {
+      "symbol": "ARANOS_VENDOR_WEAPON_2",
+      "id": 313,
+      "name": "Aranos Prison: Megacorp Vendor - New Weapon 2",
+      "vendor": true,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.secondary_inventory + Items.ZODIAC.offset"
+    },
+    {
+      "symbol": "BARLOW_GADGETRON_1",
+      "id": 314,
+      "name": "Barlow: Gadgetron Vendor - Weapon 1",
+      "vendor": true,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.secondary_inventory + Items.BOMB_GLOVE.offset"
+    },
+    {
+      "symbol": "BARLOW_GADGETRON_2",
+      "id": 315,
+      "name": "Barlow: Gadgetron Vendor - Weapon 2",
+      "vendor": true,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.secondary_inventory + Items.VISIBOMB_GUN.offset"
+    },
+    {
+      "symbol": "BARLOW_GADGETRON_3",
+      "id": 316,
+      "name": "Barlow: Gadgetron Vendor - Weapon 3",
+      "vendor": true,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.secondary_inventory + Items.TESLA_CLAW.offset"
+    },
+    {
+      "symbol": "BARLOW_GADGETRON_4",
+      "id": 317,
+      "name": "Barlow: Gadgetron Vendor - Weapon 4",
+      "vendor": true,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.secondary_inventory + Items.DECOY_GLOVE.offset"
+    },
+    {
+      "symbol": "BARLOW_GADGETRON_5",
+      "id": 318,
+      "name": "Barlow: Gadgetron Vendor - Weapon 5",
+      "vendor": true,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.secondary_inventory + Items.RYNO_II.offset"
+    },
+    {
+      "symbol": "BARLOW_GADGETRON_6",
+      "id": 319,
+      "name": "Barlow: Gadgetron Vendor - Weapon 6",
+      "vendor": true,
+      "enabled_when": null,
+      "flag": "lambda ram: ram.secondary_inventory + Items.WALLOPER.offset"
+    }
+  ],
+  "check_maps": {
+    "PLANET_UNLOCK_TO_LOCATION_ID": [
+      {
+        "game_value": 2,
+        "location_id": 11
+      },
+      {
+        "game_value": 3,
+        "location_id": 21
+      },
+      {
+        "game_value": 4,
+        "location_id": 22
+      },
+      {
+        "game_value": 5,
+        "location_id": 41
+      },
+      {
+        "game_value": 6,
+        "location_id": 50
+      },
+      {
+        "game_value": 7,
+        "location_id": 61
+      },
+      {
+        "game_value": 8,
+        "location_id": 70
+      },
+      {
+        "game_value": 9,
+        "location_id": 80
+      },
+      {
+        "game_value": 10,
+        "location_id": 91
+      },
+      {
+        "game_value": 11,
+        "location_id": 90
+      },
+      {
+        "game_value": 12,
+        "location_id": 100
+      },
+      {
+        "game_value": 13,
+        "location_id": 120
+      },
+      {
+        "game_value": 14,
+        "location_id": 130
+      },
+      {
+        "game_value": 15,
+        "location_id": 140
+      },
+      {
+        "game_value": 16,
+        "location_id": 150
+      },
+      {
+        "game_value": 17,
+        "location_id": 160
+      },
+      {
+        "game_value": 18,
+        "location_id": 172
+      },
+      {
+        "game_value": 19,
+        "location_id": 170
+      },
+      {
+        "game_value": 20,
+        "location_id": 190
+      },
+      {
+        "game_value": 24,
+        "location_id": 60
+      }
+    ],
+    "INVENTORY_OFFSET_TO_LOCATION_ID": [
+      {
+        "game_value": 2,
+        "location_id": 32
+      },
+      {
+        "game_value": 3,
+        "location_id": 33
+      },
+      {
+        "game_value": 5,
+        "location_id": 182
+      },
+      {
+        "game_value": 7,
+        "location_id": 121
+      },
+      {
+        "game_value": 8,
+        "location_id": 111
+      },
+      {
+        "game_value": 13,
+        "location_id": 30
+      },
+      {
+        "game_value": 19,
+        "location_id": 112
+      },
+      {
+        "game_value": 20,
+        "location_id": 31
+      },
+      {
+        "game_value": 21,
+        "location_id": 81
+      },
+      {
+        "game_value": 36,
+        "location_id": 10
+      },
+      {
+        "game_value": 38,
+        "location_id": 20
+      },
+      {
+        "game_value": 39,
+        "location_id": 40
+      },
+      {
+        "game_value": 46,
+        "location_id": 12
+      },
+      {
+        "game_value": 49,
+        "location_id": 141
+      },
+      {
+        "game_value": 50,
+        "location_id": 15
+      },
+      {
+        "game_value": 51,
+        "location_id": 113
+      },
+      {
+        "game_value": 54,
+        "location_id": 110
+      },
+      {
+        "game_value": 55,
+        "location_id": 180
+      },
+      {
+        "game_value": 16,
+        "location_id": 122
+      }
+    ],
+    "PLAT_BOLT_OFFSET_TO_LOCATION_ID": [
+      {
+        "game_value": 5,
+        "location_id": 14
+      },
+      {
+        "game_value": 6,
+        "location_id": 13
+      },
+      {
+        "game_value": 9,
+        "location_id": 24
+      },
+      {
+        "game_value": 105,
+        "location_id": 23
+      },
+      {
+        "game_value": 13,
+        "location_id": 35
+      },
+      {
+        "game_value": 15,
+        "location_id": 34
+      },
+      {
+        "game_value": 16,
+        "location_id": 43
+      },
+      {
+        "game_value": 17,
+        "location_id": 42
+      },
+      {
+        "game_value": 20,
+        "location_id": 51
+      },
+      {
+        "game_value": 24,
+        "location_id": 64
+      },
+      {
+        "game_value": 25,
+        "location_id": 63
+      },
+      {
+        "game_value": 26,
+        "location_id": 62
+      },
+      {
+        "game_value": 28,
+        "location_id": 71
+      },
+      {
+        "game_value": 29,
+        "location_id": 72
+      },
+      {
+        "game_value": 32,
+        "location_id": 83
+      },
+      {
+        "game_value": 33,
+        "location_id": 84
+      },
+      {
+        "game_value": 34,
+        "location_id": 82
+      },
+      {
+        "game_value": 37,
+        "location_id": 92
+      },
+      {
+        "game_value": 39,
+        "location_id": 93
+      },
+      {
+        "game_value": 40,
+        "location_id": 101
+      },
+      {
+        "game_value": 44,
+        "location_id": 114
+      },
+      {
+        "game_value": 45,
+        "location_id": 115
+      },
+      {
+        "game_value": 48,
+        "location_id": 125
+      },
+      {
+        "game_value": 49,
+        "location_id": 124
+      },
+      {
+        "game_value": 50,
+        "location_id": 123
+      },
+      {
+        "game_value": 52,
+        "location_id": 132
+      },
+      {
+        "game_value": 53,
+        "location_id": 131
+      },
+      {
+        "game_value": 55,
+        "location_id": 133
+      },
+      {
+        "game_value": 56,
+        "location_id": 142
+      },
+      {
+        "game_value": 60,
+        "location_id": 151
+      },
+      {
+        "game_value": 64,
+        "location_id": 161
+      },
+      {
+        "game_value": 69,
+        "location_id": 174
+      },
+      {
+        "game_value": 70,
+        "location_id": 173
+      },
+      {
+        "game_value": 72,
+        "location_id": 183
+      },
+      {
+        "game_value": 73,
+        "location_id": 184
+      },
+      {
+        "game_value": 77,
+        "location_id": 193
+      },
+      {
+        "game_value": 78,
+        "location_id": 194
+      },
+      {
+        "game_value": 79,
+        "location_id": 192
+      },
+      {
+        "game_value": 81,
+        "location_id": 201
+      },
+      {
+        "game_value": 82,
+        "location_id": 200
+      }
+    ],
+    "NANOTECH_OFFSET_TO_LOCATION_ID": [
+      {
+        "game_value": 0,
+        "location_id": 65
+      },
+      {
+        "game_value": 1,
+        "location_id": 36
+      },
+      {
+        "game_value": 2,
+        "location_id": 85
+      },
+      {
+        "game_value": 3,
+        "location_id": 117
+      },
+      {
+        "game_value": 4,
+        "location_id": 116
+      },
+      {
+        "game_value": 5,
+        "location_id": 162
+      },
+      {
+        "game_value": 6,
+        "location_id": 52
+      },
+      {
+        "game_value": 7,
+        "location_id": 126
+      },
+      {
+        "game_value": 8,
+        "location_id": 134
+      },
+      {
+        "game_value": 9,
+        "location_id": 94
+      }
+    ]
+  }
+}

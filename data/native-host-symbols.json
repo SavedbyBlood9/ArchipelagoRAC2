@@ -1,0 +1,102 @@
+{
+  "RESET_MOBY_FUNCS": [
+    {
+      "symbol": "func_L00_00300618"
+    }
+  ],
+  "SPECIAL_MENU_FUNCS": [
+    {
+      "symbol": "func_002CF340"
+    }
+  ],
+  "SHORTCUT_MENU_FUNCS": [
+    {
+      "symbol": "func_002D0FA0"
+    }
+  ],
+  "MAKTAR_ARENA_MENU_FUNC": [
+    {
+      "symbol": "func_L02_003FD8B8"
+    }
+  ],
+  "JOBA_ARENA_MENU_FUNC": [
+    {
+      "symbol": "func_L11_00443498"
+    }
+  ],
+  "MAKTAR_ARENA_DISPLAY_PREV_FUNC": [
+    {
+      "symbol": "func_L02_003FDDE8"
+    }
+  ],
+  "MAKTAR_ARENA_DISPLAY_NEXT_FUNC": [
+    {
+      "symbol": "func_L02_003FE250"
+    }
+  ],
+  "JOBA_ARENA_DISPLAY_PREV_FUNC": [
+    {
+      "symbol": "func_L11_00443940"
+    }
+  ],
+  "JOBA_ARENA_DISPLAY_NEXT_FUNC": [
+    {
+      "symbol": "func_L11_00443D78"
+    }
+  ],
+  "SPACESHIP_MENU_FUNCS": [
+    {
+      "symbol": "func_L05_0041EF00"
+    }
+  ],
+  "START_SPACESHIP_CHALLENGE_FUNCS": [
+    {
+      "symbol": "func_L05_0041ED18"
+    }
+  ],
+  "HOVERBIKE_MENU_FUNCS": [
+    {
+      "symbol": "func_L04_0040AD28"
+    }
+  ],
+  "START_HOVERBIKE_CHALLENGE_FUNCS": [
+    {
+      "symbol": "func_L04_0040BA68"
+    }
+  ],
+  "OOZLA_CONTROLLER_FUNC": [
+    {
+      "symbol": "func_L01_003E8ED8"
+    }
+  ],
+  "MAKTAR_CONTROLLER_FUNC": [
+    {
+      "symbol": "func_L02_00409D78"
+    }
+  ],
+  "BARLOW_SPAWN_CONTROLLER_FUNC": [
+    {
+      "symbol": "func_L04_00456628"
+    }
+  ],
+  "JOBA_CONTROLLER_FUNC": [
+    {
+      "symbol": "func_L11_00472E10"
+    }
+  ],
+  "TABORA_CONTROLLER_FUNC": [
+    {
+      "symbol": "func_L08_003F6E18"
+    }
+  ],
+  "DAMOSEL_CONTROLLER_FUNC": [
+    {
+      "symbol": "func_L18_003F90A0"
+    }
+  ],
+  "SWAMP_MONSTER_GATE_FUNC": [
+    {
+      "symbol": "func_L01_00405300"
+    }
+  ]
+}

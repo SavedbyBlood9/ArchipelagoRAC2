@@ -1,0 +1,26 @@
+[
+  {
+    "name": "APRac2",
+    "commit": "12148dcedcbcb19bf6fc47f0a5b45281d06740bc"
+  },
+  {
+    "name": "OpenRAC",
+    "commit": "cef20495798f314cad4659bb3e9a457dfcec865a"
+  },
+  {
+    "name": "openrac-mods",
+    "commit": "6e5af0cf4252f0c3eccea7bb8349d8bbfe8b5acb"
+  },
+  {
+    "name": "ArchipelagoMW/Archipelago",
+    "commit": "84683afa99e6fc36dd6949178a1f7edb9169ec0f"
+  },
+  {
+    "name": "nlohmann/json",
+    "commit": "55f93686c01528224f448c19128836e7df245f72"
+  },
+  {
+    "name": "OpenRAC/rac2-decomp",
+    "commit": "4ea93ceaf43aec055e19211d36512e847860bac2"
+  }
+]

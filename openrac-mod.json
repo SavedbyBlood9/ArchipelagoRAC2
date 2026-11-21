@@ -1,0 +1,74 @@
+{
+  "format": 2,
+  "id": "aprac2-openrac-dev",
+  "name": "ArchipelagoRAC2",
+  "version": "0.3.0",
+  "author": "ArchipelagoRAC2 contributors; based on APRac2 by evilwb / Will Becker",
+  "description": "Experimental native ArchipelagoRAC2 gameplay and Archipelago bridge for Going Commando USA v1.01. Gameplay requires the included OpenRAC source patch. Based on evilwb/APRac2: https://github.com/evilwb/APRac2; native host by OpenRAC: https://github.com/OpenRAC/OpenRAC.",
+  "license": "MIT",
+  "api": "1.19",
+  "games": {
+    "rac2": [
+      "ntsc"
+    ]
+  },
+  "hooks": [
+    "Item_Give",
+    "Item_Equip",
+    "Planet_Unlock",
+    "PlatinumBolts_CountTotal",
+    "Hero_UpdateCollectionProgress",
+    "Save_Serialize",
+    "Save_NewGame",
+    "APRac2_CountKill",
+    "Weapon_LevelUp",
+    "Vendor_BuildList",
+    "Vendor_Price",
+    "APRac2_ExtrasMenu",
+    "Moby_DynamoPickup_Update",
+    "Moby_TractorBeamSeller_Update",
+    "Moby_BoxBreakerPickup_Update",
+    "Moby_ThermanatorSeller_Update",
+    "Moby_ThermanatorArea_Update",
+    "Moby_SwingshotArea_Update",
+    "Moby_GliderPickup_Update",
+    "Moby_LevitatorSeller_Update",
+    "Moby_ChargeBootsRider_Update",
+    "Moby_RaceController_Update",
+    "Moby_MapperReturn_Update",
+    "Moby_HypnomaticMaker_Update",
+    "APRac2_EndakoRescue",
+    "APRac2_TaboraWrench",
+    "APRac2_PrisonWrench",
+    "APRac2_TodanoTrader",
+    "APRac2_PrisonPlumber",
+    "APRac2_PrisonController",
+    "APRac2_SiberiusThief",
+    "APRac2_BoldanCutscene",
+    "APRac2_HypnomaticPart"
+  ],
+  "settings": [
+    {
+      "key": "enable_gameplay",
+      "name": "Experimental native gameplay",
+      "type": "bool",
+      "default": false,
+      "description": "Requires the custom OpenRAC host hooks. Experimental: a full campaign playthrough has not been validated."
+    },
+    {
+      "key": "bridge_port",
+      "name": "Local client port",
+      "type": "int",
+      "default": 38282,
+      "min": 1,
+      "max": 65535
+    },
+    {
+      "key": "bridge_token",
+      "name": "Local client token",
+      "type": "string",
+      "default": "",
+      "description": "Paste the token printed by the ArchipelagoRAC2 sidecar console."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+build/
+dist/
+__pycache__/
+.sdk/
+local-play/
+host-patch/overrides/*.c

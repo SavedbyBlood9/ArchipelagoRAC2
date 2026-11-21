@@ -1,0 +1,15 @@
+func_002B0DB8	archipelago	PlatinumBolts_CountTotal	hook	Counts collected platinum bolts; replacement may use received AP currency.
+func_L00_002D5EB8	archipelago	Hero_UpdateCollectionProgress	hook	Recounts nanotech and weapon progress; allows collection flags independent of received boosts.
+func_0029ADA0	archipelago	Save_Serialize	hook	Builds a save packet; temporary giver inventory must be restored before serialization.
+func_00298E08	archipelago	Save_NewGame	hook	Resets game data from the disc defaults; a mod may choose the starting hub.
+func_L03_003D20F8	archipelago	APRac2_EndakoRescue	hook	Native APRac2 adapter gate for FREE_RATCHET_FUNC; unchanged without the mod.
+func_L08_003F6E18	archipelago	APRac2_TaboraWrench	hook	Native APRac2 adapter gate for TABORA_CONTROLLER_FUNC; unchanged without the mod.
+func_L14_003F4F98	archipelago	APRac2_PrisonWrench	hook	Native APRac2 adapter gate for PRISON_WRENCH_INIT_FUNC; unchanged without the mod.
+func_L12_003B5240	archipelago	APRac2_TodanoTrader	hook	Native APRac2 adapter gate for STUART_ZURGO_FUNC; unchanged without the mod.
+func_L14_00425CB0	archipelago	APRac2_PrisonPlumber	hook	Native APRac2 adapter gate for PLUMBER_FUNC; unchanged without the mod.
+func_L14_004265B8	archipelago	APRac2_PrisonController	hook	Native APRac2 adapter gate for PRISON_CONTROLLER_FUNC; unchanged without the mod.
+func_L07_003F7048	archipelago	APRac2_SiberiusThief	hook	Native APRac2 adapter gate for THIEF_FUNC; unchanged without the mod.
+func_L13_0041CD18	archipelago	APRac2_BoldanCutscene	hook	Native APRac2 adapter gate for BOLDAN_CUTSCENE_TRIGGER_FUNC; unchanged without the mod.
+func_L18_0043FC70	archipelago	APRac2_HypnomaticPart	hook	Native APRac2 adapter gate for HYPNOMATIC_PART2_FUNC; unchanged without the mod.
+func_002A6AE0	archipelago	APRac2_CountKill	hook	Native APRac2 adapter gate for TRACK_KILL_FUNCS; unchanged without the mod.
+func_002CF340	archipelago	APRac2_ExtrasMenu	hook	APRac2 native extra-menu availability gate; retail behavior without native control magic.

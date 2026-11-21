@@ -1,0 +1,6 @@
+func_L13_0041CD18	row	rac2-ntsc	The catalogue anchors this function eight bytes before its entry (13:0041CD20); APRac2 hooks the canonical C symbol, whose placements supply the actual entry.
+func_00298E08	boot	rac2-ntsc2	APRac2 New Game hook is introduced for USA v1.01 only; USA v2.00 is not a supported target of this native mod.
+func_0029ADA0	boot	rac2-ntsc	APRac2 save serialization hook is introduced for USA v1.01 only; the other releases are unchanged.
+func_002A6AE0	boot	rac2-ntsc2	APRac2 kill-counter hook is introduced for USA v1.01 only; USA v2.00 remains unchanged.
+func_002B0DB8	boot	rac2-pal	APRac2 independent platinum-currency hook is introduced for USA v1.01; PAL is not yet supported.
+func_L14_004265B8	14	rac2-ntsc2	APRac2 inventory-preserving prison-controller hook is introduced for USA v1.01 only.

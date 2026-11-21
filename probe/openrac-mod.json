@@ -1,0 +1,23 @@
+{
+  "format": 2,
+  "id": "aprac2-openrac-probe",
+  "name": "ArchipelagoRAC2 compatibility probe",
+  "version": "0.1.0",
+  "author": "ArchipelagoRAC2 contributors; based on APRac2 by evilwb / Will Becker",
+  "description": "Development diagnostic for the APRac2 port. Logs native item and planet hooks; does not connect to Archipelago or randomize gameplay. Based on evilwb/APRac2: https://github.com/evilwb/APRac2; native host by OpenRAC: https://github.com/OpenRAC/OpenRAC.",
+  "license": "MIT",
+  "api": "1.19",
+  "games": {
+    "rac2": [
+      "ntsc"
+    ]
+  },
+  "hooks": [
+    "Item_Give",
+    "Item_Equip",
+    "Planet_Unlock",
+    "Vendor_BuildList",
+    "Level_Load"
+  ],
+  "settings": []
+}
