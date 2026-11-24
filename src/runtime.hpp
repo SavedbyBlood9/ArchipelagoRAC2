@@ -65,6 +65,7 @@ private:
     bool vendor_ammo_=false;
     json scouts_;
     uint32_t address(const char* key) const;
+    uint32_t memory_address(uint32_t primary) const;
     uint8_t read8(uint32_t addr) const;
     void write8(uint32_t addr,uint8_t value);
     int32_t read32(uint32_t addr) const;

@@ -6,7 +6,22 @@
 #include <vector>
 #include "runtime.hpp"
 using rac2ap::json;
-static std::vector<uint8_t> memory(32*1024*1024);
+static bool pal_fixture=false;
+// Independent fixture offsets, checked against OpenRAC's PAL resident-data map.
+// The adapter receives raw guest memory; only the fake retail routines use this view.
+uint32_t fixture_address(uint32_t a){
+    if(!pal_fixture)return a;
+    if(a>=0x133B80&&a<=0x1A7900)return a+0x80;
+    if(a>=0x1A7930&&a<=0x1A7C04)return a+0x88;
+    if(a>=0x1A8630&&a<=0x1A9020)return a+0xB0;
+    return a;
+}
+struct FixtureMemory {
+    std::vector<uint8_t> bytes=std::vector<uint8_t>(32*1024*1024);
+    uint8_t* data(){return bytes.data();}
+    uint8_t* at(uint32_t a){return data()+fixture_address(a);}
+    uint8_t& operator[](uint32_t a){return *at(a);}
+} memory;
 static std::map<std::string,void*> hooks;
 static std::string metadata;
 static int coins_seen=-1,saved_dynamo=-1,travel=-1,grants=0;
@@ -31,9 +46,9 @@ void original_vendor(int32_t){
     const uint32_t root=0x21F240,list=root+0x140;int32_t n=0;
     for(int item:{22,26}){
         int32_t entry[6]={item,memory[0x1A7AF8+item]?1:0,0xCDB,0,0,0};
-        std::memcpy(memory.data()+list+n++*24,entry,24);
+        std::memcpy(memory.at(list+n++*24),entry,24);
     }
-    std::memcpy(memory.data()+root+0x740,&n,4);
+    std::memcpy(memory.at(root+0x740),&n,4);
 }
 int hook(openrac_mod*,const char* name,const char*,void* fn,void** original){
     hooks[name]=fn;std::string n=name;
@@ -64,11 +79,13 @@ void npc_pickup(uint32_t){
 }
 void clank_rescue(uint32_t){memory[0x1A7AF8+2]=1;memory[0x1A7AF8+3]=1;((void(*)(uint32_t))hooks["Save_Serialize"])(0);}
 void wrench_pickup(uint32_t){memory[0x139568+10]=0x4A;((void(*)(uint32_t))hooks["Save_Serialize"])(0);}
-int word(uint32_t addr){int32_t v;std::memcpy(&v,memory.data()+addr,4);return v;}
-int half(uint32_t addr){uint16_t v;std::memcpy(&v,memory.data()+addr,2);return v;}
-int bolts(){int32_t n;std::memcpy(&n,memory.data()+0x1A79F8,4);return n;}
-int main(){
+int word(uint32_t addr){int32_t v;std::memcpy(&v,memory.at(addr),4);return v;}
+int half(uint32_t addr){uint16_t v;std::memcpy(&v,memory.at(addr),2);return v;}
+int bolts(){int32_t n;std::memcpy(&n,memory.at(0x1A79F8),4);return n;}
+int main(int argc,char** argv){
+    pal_fixture=argc>1&&std::string(argv[1])=="--pal";
     openrac_api api{};api.size=sizeof api;api.api_major=1;api.api_minor=19;api.memory=memory.data();
+    api.game="rac2";api.version=pal_fixture?"pal":"ntsc";
     api.relocate_data=relocate;api.log=log_line;api.hook=hook;api.on_frame=frame_callback;api.on_save_data=frame_callback;
     api.save_data_get=save_get;api.save_data_set=save_set;api.play_travel=go;api.moby_list=mobys;
     rac2ap::Bridge bridge;rac2ap::Runtime game(&api,nullptr,bridge);game.install();
@@ -113,13 +130,13 @@ int main(){
     auto saved=metadata;
     state["items"].push_back({{"item",304}});game.step(state,status);require(bolts()==20000);
     // SDK restore loads both original game memory and its matching mod metadata.
-    metadata=saved;int32_t old=10000;std::memcpy(memory.data()+0x1A79F8,&old,4);game.changed_save();
+    metadata=saved;int32_t old=10000;std::memcpy(memory.at(0x1A79F8),&old,4);game.changed_save();
     game.step(state,status);require(bolts()==20000&&game.journal.cursor==7);
     state["connected"]=false;game.step(state,status);require(game.active());
-    state["connected"]=true;int health=10;std::memcpy(memory.data()+0x18C2EC,&health,4);
+    state["connected"]=true;int health=10;std::memcpy(memory.at(0x18C2EC),&health,4);
     state["death_events"]=json::array({{{"time",123.0}}});game.step(state,status);
     require(word(0x18C2EC)==0&&game.journal.deaths.count(123.0));
-    std::memcpy(memory.data()+0x18C2EC,&health,4);game.step(state,status);require(word(0x18C2EC)==10);
+    std::memcpy(memory.at(0x18C2EC),&health,4);game.step(state,status);require(word(0x18C2EC)==10);
     status.level=20;victory=true;game.step(state,status);require(game.journal.goal);
     state["connected"]=true;state["identity"]["seed"]="foreign";
     bool rejected=false;try{game.step(state,status);}catch(const std::exception&){rejected=true;}

@@ -4,3 +4,4 @@ __pycache__/
 .sdk/
 local-play/
 host-patch/overrides/*.c
+host-patch/overrides-pal/*.c

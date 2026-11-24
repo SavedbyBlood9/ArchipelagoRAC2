@@ -1,6 +1,6 @@
 # Original YAML settings
 
-All 15 scalar game options retain upstream defaults, ranges and generation rules. All are transported in native slot data. Native behavior below requires experimental gameplay on the patched host; implementation does not establish full playthrough parity.
+USA v1.01 and PAL SCES_516.07 share the same YAML template. All 15 scalar game options retain upstream defaults, ranges and generation rules. All are transported in native slot data. Native behavior below requires experimental gameplay on the patched host; implementation does not establish full playthrough parity.
 
 | YAML setting | Implementation |
 |---|---|

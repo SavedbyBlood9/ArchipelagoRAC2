@@ -37,7 +37,7 @@ def build_slot_data(world):
     starting = sorted(item.code for item in world.multiworld.precollected_items[world.player]
                       if item.code is not None)
     return dict(options, openrac=dict(
-        format=FORMAT, game=GAME, target='rac2/ntsc',
+        format=FORMAT, game=GAME, target='rac2', supported_discs=['ntsc','pal'],
         seed=str(world.multiworld.seed_name), player=world.player,
         starting_items=starting,
         starting_weapon_ids=[item.item_id for item in world.starting_weapons],
@@ -49,8 +49,12 @@ def validate_slot_data(data):
     if not isinstance(data, dict) or not isinstance(data.get('openrac'), dict):
         raise ValueError('This seed is from the PS2 APWorld; regenerate with ArchipelagoRAC2.apworld')
     native = data['openrac']
-    if native.get('format') != FORMAT or native.get('game') != GAME or native.get('target') != 'rac2/ntsc':
+    if native.get('format') != FORMAT or native.get('game') != GAME or native.get('target') not in ('rac2','rac2/ntsc','rac2/pal'):
         raise ValueError('Unsupported APRac2 OpenRAC seed format or game target')
+    discs=native.get('supported_discs')
+    if discs is not None and (not isinstance(discs,list) or not discs or
+                              any(d not in ('ntsc','pal') for d in discs) or len(set(discs))!=len(discs)):
+        raise ValueError('Unsupported disc list in native slot data')
     if not isinstance(native.get('seed'), str) or not native['seed']:
         raise ValueError('Missing seed identity')
     if type(native.get('player')) is not int or native['player'] <= 0:

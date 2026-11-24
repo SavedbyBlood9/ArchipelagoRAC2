@@ -1,6 +1,6 @@
-# ArchipelagoRAC2 0.3.1 (experimental)
+# ArchipelagoRAC2 0.4.0 (experimental)
 
-Native Archipelago implementation for Going Commando USA v1.01 (`rac2/ntsc`). Preserves APRac2's game identity, 120 item IDs, 123 possible location IDs, original access logic and YAML settings.
+Native Archipelago implementation for Going Commando USA v1.01 (`rac2/ntsc`) and Locked & Loaded Europe/Australia SCES_516.07 (`rac2/pal`). Preserves APRac2's game identity, 120 item IDs, 123 possible location IDs, original access logic and YAML settings.
 
 The native adapter now implements item delivery, independent collection checks, NPC pickup views, coordinates, vendor item/ammo modes and base prices, currencies, progressive equipment, save-local receipt history, goal reporting, DeathLink, hub travel and gameplay settings. **This is an experimental implementation, not a validated full-campaign release.** See VALIDATION.md and PORTING.md for the remaining verification boundary.
 
@@ -14,7 +14,7 @@ The existing internal mod ID, hook aliases and Archipelago game identity are ret
 
 - `dist/ArchipelagoRAC2.apworld`: original world generation with native slot data instead of ISO patching.
 - `templates/ArchipelagoRAC2.yaml`: original options and defaults.
-- `dist/ArchipelagoRAC2-0.3.1-windows-x86_64.zip`: native mod.
+- `dist/ArchipelagoRAC2-0.4.0-windows-x86_64.zip`: native mod.
 - `client/client.py`: Archipelago WebSocket client and authenticated loopback bridge.
 - `host-patch/`: additional hooks and native-only option overrides; source patcher in `tools/apply_host_patch.py`.
 
@@ -35,14 +35,14 @@ The campaign starts at Ship Shack. Return with L1+R1+L2+R2+Select or the special
 
 ## Play with the locally built graphical host
 
-Download the files from the [experimental v0.3.1 release](https://github.com/SavedbyBlood9/ArchipelagoRAC2/releases/tag/v0.3.1) into `dist/`, or use the source bundle that includes them. Build the patched graphical host locally from your supported disc. In the original development workspace the helper also detects the existing local host. From this folder:
+Download the files from the [experimental v0.4.0 release](https://github.com/SavedbyBlood9/ArchipelagoRAC2/releases/tag/v0.4.0) into `dist/`, or use the source bundle that includes them. Build the patched graphical host locally from your supported disc. In the original development workspace the helper also detects the existing local host. From this folder:
 
 ```powershell
 python -m pip install -r client/requirements.txt
 python tools/play_local.py --server wss://archipelago.gg:PORT --slot YourSlotName
 ```
 
-Add `--password` if needed. The helper waits for slot synchronization, configures the native mod automatically, then opens the game. Start a new campaign. Cards/settings/plugins/logs stay under `local-play/`; extracted disc and rendering assets are shared read-only from the supplied OpenRAC data folder. It leaves the installed launcher and its plugin configuration alone. In a different checkout, pass `--host PATH_TO_CUSTOM_EXE --data-root PATH_TO_EXTRACTED_DATA`. The helper expects a graphical host and requires the sidecar dependencies above.
+Add `--password` if needed. The helper waits for slot synchronization, configures the native mod automatically, then opens the game. Start a new campaign. Add `--region pal` for SCES_516.07. Cards/settings/plugins/logs stay under `local-play/` (PAL: `local-play/pal/`); extracted disc and rendering assets are shared read-only from the supplied OpenRAC data folder. It leaves the installed launcher and its plugin configuration alone. In a different checkout, pass `--host PATH_TO_CUSTOM_EXE --data-root PATH_TO_EXTRACTED_DATA`. The helper expects a graphical host and requires the sidecar dependencies above.
 
 ## Build and test the mod
 
@@ -62,4 +62,4 @@ python tools/package_native_mod.py --sdk C:/path/to/OpenRAC/sdk --input build/pa
 
 Mod, sidecar and APRac2-derived world code: MIT; notices in `third_party/`. Bundled nlohmann/json 3.12.0: MIT. OpenRAC SDK: external MIT dependency. **Native host overrides derive from OpenRAC/rac2-decomp and are GPL-3.0-only**, with their own license and attribution under `host-patch/`. Generated native game-function bodies are kept local and excluded from the repository and release source bundle. The patch tool regenerates them from your local OpenRAC decompilation checkout as needed. No retail disc assets or translated retail game code are distributed. Build the host locally from your own supported disc.
 
-Version 0.3.1 is a license-packaging correction: native archives now include Will Becker's original APRac2 MIT notice verbatim as `LICENSE.APRac2`. The packager checks its bytes against the retained upstream license before completing. Gameplay and save/network identifiers are unchanged.
+Version 0.4.0 adds a PAL memory profile and region-specific native host integration while retaining the original APRac2 MIT notice in every native package. USA and PAL use the same Archipelago game identity, YAML settings and item/location IDs.

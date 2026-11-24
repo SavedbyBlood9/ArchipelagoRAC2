@@ -1,6 +1,6 @@
-# ArchipelagoRAC2 native client 0.3.1 (experimental)
+# ArchipelagoRAC2 native client 0.4.0 (experimental)
 
-Going Commando USA v1.01, OpenRAC mod API 1.19. Implements the native Archipelago adapter, item delivery, independent location checks, vendors, save metadata, DeathLink, hub travel and original YAML gameplay settings.
+Going Commando USA v1.01 and Locked & Loaded PAL SCES_516.07, OpenRAC mod API 1.19. Implements the native Archipelago adapter, item delivery, independent location checks, vendors, save metadata, DeathLink, hub travel and original YAML gameplay settings.
 
 Gameplay requires the custom OpenRAC host built with host-patch from the source package. The installed stock host lacks required hooks. The Experimental native gameplay setting defaults off; leave it off for connection validation on an ordinary host. A full campaign and real multiworld completion remain unverified.
 

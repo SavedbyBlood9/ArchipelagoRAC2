@@ -1,24 +1,33 @@
 """Prepare opt-in native C changes in hostgen's build copies, never in the decompilation."""
 from pathlib import Path
 import argparse,json,re,sys
-p=argparse.ArgumentParser(description=__doc__);p.add_argument('checkout',type=Path);a=p.parse_args()
+p=argparse.ArgumentParser(description=__doc__);p.add_argument('checkout',type=Path)
+p.add_argument('--version',choices=['ntsc','pal'],default='ntsc');a=p.parse_args()
 project=Path(__file__).resolve().parents[1]
 root=a.checkout.resolve()
 sys.path.insert(0,str(root/'port/tools/hostgen'))
 import prep
+import release
 source=root/'games/rac2/decomp'
 facts=json.loads((project/'data/native-host-symbols.json').read_text())
 names={}
 for header in (source/'include/names').glob('*.h'):
  for readable,symbol in re.findall(r'^#define\s+(\w+)\s+(func_\w+)\s*$',header.read_text(),re.M):names[symbol]=readable
 paths=[p for p in (source/'src').rglob('*.c') if '/pal/' not in p.as_posix() and '/us2/' not in p.as_posix()]
-out=project/'host-patch/overrides'
+out=project/('host-patch/overrides-pal' if a.version=='pal' else 'host-patch/overrides')
 out.mkdir(parents=True,exist_ok=True)
 magic='(D_001A7B30[33]==169 && D_001A7B30[34]==82 && D_001A7B30[35]==50 && (D_001A7B30[40]&1))'
 free='('+magic+' && (D_001A7B30[40]&2))'
 revisit='('+magic+' && (D_001A7B30[40]&4))'
 table=[]
+pal_symbols=json.loads((project/'data/pal-host-symbols.json').read_text()) if a.version=='pal' else {}
+pal_view=release.Release.load(root/'port/game/rac2-pal/release/release_names.json') if a.version=='pal' else None
 def find(symbol):
+ if a.version=='pal' and pal_symbols[symbol].get('source'):
+  row=pal_symbols[symbol];path=source/row['source'];text=path.read_text(errors='replace')
+  name=row['definition'];span=prep._definition(text,name)
+  if not span:raise ValueError('PAL source definition is missing: '+symbol)
+  return path,text[span[0]:span[1]],name
  name=names.get(symbol,symbol)
  for path in paths:
   text=path.read_text(errors='replace');span=prep._definition(text,name)
@@ -52,6 +61,9 @@ for key in keys:
    'TABORA_CONTROLLER_FUNC':'g_item_owned_flags[0x15] && *(int *)(vars+0x20)!=-1',
    'DAMOSEL_CONTROLLER_FUNC':'TRIGGER(0xB4) && !TRIGGER(0xB8)',
   }
+  if a.version=='pal':
+   predicates['OOZLA_CONTROLLER_FUNC']=predicates['OOZLA_CONTROLLER_FUNC'].replace('hints->','vars->')
+   predicates['TABORA_CONTROLLER_FUNC']=predicates['TABORA_CONTROLLER_FUNC'].replace('(vars+','(state+')
   old='if ('+predicates[key] if key not in ['MAKTAR_CONTROLLER_FUNC'] else 'if('+predicates[key]
   assert body.count(old)==(2 if key=='DAMOSEL_CONTROLLER_FUNC' else 1),(key,body.count(old))
   body=body.replace(old,old.split('(')[0]+'(!'+magic+' && '+old[old.index('(')+1:],1);count=1
@@ -67,13 +79,13 @@ for key in keys:
   body=body[:at]+f'\n    if ({magic}) {{ data_set_small_value_and_refresh(24, 1); return 0; }}\n'+body[at:]
   count=1
  elif key=='SPECIAL_MENU_FUNCS':
-  needle='tab_menu_set_tables('
+  needle='tab_menu_set_tables_pal(' if a.version=='pal' else 'tab_menu_set_tables('
   index=body.index(needle)
   body=body[:index]+f'''if ({magic}) {{
             Menu *ap_menu = &g_extras_tab_table_c;
-            ap_menu->entries[0].text_id = 0x3202;
+            ap_menu->entries[0].text_id = {"0x1114" if a.version=="pal" else "0x3202"};
             ap_menu->entries[0].data = g_extras_unlock_entry_a;
-            ap_menu->entries[1].text_id = 0x320C;
+            ap_menu->entries[1].text_id = {"0x111E" if a.version=="pal" else "0x320C"};
             ap_menu->entries[1].data = g_extras_unlock_entry_b;
         }}
         '''+body[index:];count=1
@@ -92,6 +104,11 @@ for key in keys:
  if not count:raise ValueError('No verified source rewrite for '+key+' '+name)
  first=body.index('{')+1
  body=body[:first]+'\n    extern unsigned char D_001A7B30[];\n'+body[first:]
+ if a.version=='pal':
+  target=pal_symbols[symbol]['symbol']
+  body=re.sub(r'\b'+re.escape(name)+r'(?=\s*\()',target,body,count=1)
+  body=pal_view.text(body)
+  symbol=target
  notice=f'/* SPDX-License-Identifier: GPL-3.0-only\n * Derived from OpenRAC/rac2-decomp {path.relative_to(source).as_posix()}\n * Copyright (c) the OpenRAC contributors. APRac2 changes gated by native mod control bytes.\n * Replaces only the native build copy; the matching decompilation is untouched. */\n'
  (out/(symbol+'.c')).write_text(notice+body+'\n',encoding='utf-8',newline='\n')
  table.append(symbol+'\t'+symbol+'.c')

@@ -14,4 +14,4 @@ Remaining release validation:
 - Add richer received-item/player names and vendor labels; current reward notices identify local item names and remote vendor previews use a generic model.
 - Complete extended graphical gameplay validation. A graphical host is now built and passed an OpenGL smoke test with existing extracted rendering assets; see LOCAL_TEST.md.
 
-Only USA v1.01 is targeted. Do not claim PAL/Greatest Hits support or full campaign parity from simulator tests.
+USA v1.01 and PAL SCES_516.07 have separate native address profiles and host overrides. PAL boot addresses are translated before SDK overlay relocation. Other revisions, including Greatest Hits, remain unsupported. Runtime tests do not establish full campaign parity.

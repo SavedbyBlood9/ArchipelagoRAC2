@@ -15,3 +15,13 @@ Custom-host build and native smoke-test results are recorded separately in LOCAL
 ## 0.3.1 license-packaging correction
 
 No gameplay behavior changed. Native archive packaging now copies and verifies the exact bytes of the original APRac2 MIT notice as LICENSE.APRac2. The primary MIT notice also retains Will Becker's copyright. Prior campaign tests above describe the 0.3.0 gameplay implementation.
+
+## 0.4.0 PAL integration
+
+Five native CTest cases, ten Python tests (including the real local WebSocket bridge), and three official Archipelago framework tests pass: 18 total. The runtime adapter is exercised separately against USA and PAL mock-host memory, including grants, checks, vendor behavior, options and journal handling. Native seed contracts accept both supported discs and retain legacy USA target compatibility.
+
+The supplied Europe/Australia disc is SCES_516.07, MD5 `e184fc2a495a4654f748a8e8c587261c`. PAL callback mappings, twenty source override rewrites and the upstream parity checker were validated against the pinned checkout. The final boss placement's UID/class matches the USA data; that comparison alone does not validate final victory behavior in a playthrough.
+
+A full PAL campaign, real server multiworld completion, memory-card round trips and every localized menu combination remain unverified.
+
+The actual PAL graphical host compiled and completed a 2,400-frame isolated campaign on level 24. All 33 hooks loaded; the native bridge authenticated and emitted 15 reports. Twelve rewards applied, with cursor 12, bolts 20,000, platinum 1, nanotech boosts 1 and native option mask 7. Exit code was 0. See PAL_TEST.md for the setup and limits.

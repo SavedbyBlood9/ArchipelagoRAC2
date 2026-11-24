@@ -23,6 +23,16 @@ def connected(session, **changes):
 
 
 class SessionTest(unittest.TestCase):
+    def test_pal_and_shared_seed_targets(self):
+        fixture=Session('PAL');connected(fixture)
+        data=copy.deepcopy(fixture.options)
+        for target in ('rac2','rac2/pal','rac2/ntsc'):
+            data['openrac']['target']=target
+            data['openrac']['supported_discs']=['ntsc','pal']
+            self.assertEqual(native.validate_slot_data(data)['openrac']['supported_discs'],['ntsc','pal'])
+        data['openrac']['supported_discs']=['ntsc2']
+        with self.assertRaises(ValueError):native.validate_slot_data(data)
+
     def test_connect_identity_and_all_options(self):
         session = Session('Tester', 'secret', 'unit')
         connect = session.receive(dict(cmd='RoomInfo', seed_name='seed-1'))[0]

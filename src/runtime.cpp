@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include "runtime.hpp"
 #include "native_data.hpp"
+#include "disc.hpp"
 
 namespace rac2ap {
 namespace {
@@ -62,10 +63,11 @@ Runtime::Runtime(const openrac_api* api,openrac_mod* mod,Bridge& bridge):api_(ap
 Runtime::~Runtime(){write8(0x1A7B51,0);}
 void Runtime::fault(const std::string& reason){enabled_=false;error_=true;write8(0x1A7B51,0);status("ArchipelagoRAC2 stopped: "+reason);api_->play_travel(mod_,-1);}
 uint32_t Runtime::address(const char* key)const{return data_["addresses"].at(key).get<uint32_t>();}
-uint8_t Runtime::read8(uint32_t addr)const{return api_->memory[api_->relocate_data(addr)];}
-void Runtime::write8(uint32_t addr,uint8_t value){api_->memory[api_->relocate_data(addr)]=value;}
-int32_t Runtime::read32(uint32_t addr)const{int32_t v;std::memcpy(&v,api_->memory+api_->relocate_data(addr),4);return v;}
-void Runtime::write32(uint32_t addr,int32_t value){std::memcpy(api_->memory+api_->relocate_data(addr),&value,4);}
+uint32_t Runtime::memory_address(uint32_t primary)const{return api_->relocate_data(disc_address(api_->version?api_->version:"ntsc",primary));}
+uint8_t Runtime::read8(uint32_t addr)const{return api_->memory[memory_address(addr)];}
+void Runtime::write8(uint32_t addr,uint8_t value){api_->memory[memory_address(addr)]=value;}
+int32_t Runtime::read32(uint32_t addr)const{int32_t v;std::memcpy(&v,api_->memory+memory_address(addr),4);return v;}
+void Runtime::write32(uint32_t addr,int32_t value){std::memcpy(api_->memory+memory_address(addr),&value,4);}
 void Runtime::status(const std::string& text){if(text!=last_status_){api_->log(mod_,OPENRAC_LOG_INFO,text.c_str());last_status_=text;}}
 void Runtime::checkpoint(){auto bytes=journal.serialize();if(api_->save_data_set(mod_,bytes.data(),static_cast<uint32_t>(bytes.size()))!=0)
     throw std::runtime_error("ArchipelagoRAC2 save checkpoint was refused");}
@@ -207,8 +209,8 @@ void Runtime::give(int id){
     if(api_->play_notice){std::string line="Received "+row["name"].get<std::string>();api_->play_notice(mod_,line.c_str());}
 }
 void Runtime::initialize(){
-    std::fill(api_->memory+address("inventory"),api_->memory+address("inventory")+56,0);
-    std::fill(api_->memory+address("secondary_inventory"),api_->memory+address("secondary_inventory")+56,0);
+    std::fill(api_->memory+memory_address(address("inventory")),api_->memory+memory_address(address("inventory"))+56,0);
+    std::fill(api_->memory+memory_address(address("secondary_inventory")),api_->memory+memory_address(address("secondary_inventory"))+56,0);
     for(int i=0;i<25;++i)write32(address("selectable_planets")+i*4,i==0?24:0);
     for(int i=0;i<8;++i)write32(address("quickselect")+i*4,0);
     write8(address("inventory")+4,1); // APRac2 always restores the Hydro-Pack/Clank support byte.
@@ -222,13 +224,13 @@ void Runtime::apply_options(){
     if(options_.value("skip_wupash_nebula",0))write8(address("wupash_complete_flag"),1);
     write8(address("easy_cutscene_skip"),1);
     for(auto& row:data_["addresses"]["cutscene_flags"]){uint32_t a=row[0];write8(a,read8(a)|row[1].get<int>());}
-    uint32_t table=api_->relocate_data(0x239BA0u);
+    uint32_t table=memory_address(0x239BA0u);
     if(options_.value("no_kill_reward_degradation",0)){
-        uint32_t scale=api_->relocate_data(0x1A8858u);
+        uint32_t scale=memory_address(0x1A8858u);
         std::fill(api_->memory+scale,api_->memory+scale+32,100);
     }else if(options_.value("no_revisit_reward_change",0)){
         const uint8_t base[]={100,50,40,30,25,20,15,10};
-        uint32_t scale=api_->relocate_data(0x1A8858u);
+        uint32_t scale=memory_address(0x1A8858u);
         for(int i=0;i<32;++i)api_->memory[scale+i]=base[i%8];
     }
     // These are relocated native addresses already; do not relocate the individual record again.
@@ -259,7 +261,7 @@ void Runtime::apply_options(){
 }
 void Runtime::vendor(int32_t hide){
     if(!enabled_){vendor_(hide);return;}
-    const uint32_t root=api_->relocate_data(0x21F240u),list=root+0x140;
+    const uint32_t root=memory_address(0x21F240u),list=root+0x140;
     auto get=[&](uint32_t a){int32_t v;std::memcpy(&v,api_->memory+a,4);return v;};
     auto put=[&](uint32_t a,int32_t v){std::memcpy(api_->memory+a,&v,4);};
     vendor_(hide);
@@ -303,7 +305,7 @@ void Runtime::vendor(int32_t hide){
 }
 int Runtime::vendor_price(){
     if(!enabled_)return price_();
-    const uint32_t root=api_->relocate_data(0x21F240u);
+    const uint32_t root=memory_address(0x21F240u);
     int cursor;std::memcpy(&cursor,api_->memory+root+0x80,4);
     int size;std::memcpy(&size,api_->memory+root+0x740,4);
     if(cursor<0||cursor>=size||size>64)return price_();
@@ -321,7 +323,7 @@ void Runtime::progression(){
     int pending=read32(address("current_weapon_xp_table")+0x31*4);
     if(pending>0){write32(address("current_weapon_xp_table")+0x31*4,0);
         if(read32(address("equipped_weapon"))==0x35)write32(address("current_weapon_xp_table")+0x35*4,read32(address("current_weapon_xp_table")+0x35*4)+pending);}
-    uint32_t table=api_->relocate_data(0x239BA0u);
+    uint32_t table=memory_address(0x239BA0u);
     std::set<int> weapons;
     for(const auto& entry:items_)if(entry.second["kind"]=="WeaponData"){
         const auto& row=entry.second;

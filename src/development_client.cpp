@@ -10,8 +10,8 @@ rac2ap::Bridge bridge;
 std::string last;
 std::unique_ptr<rac2ap::Runtime> runtime;
 void load(openrac::Mod& mod) {
-    if (mod.game() != "rac2" || mod.version() != "ntsc")
-        throw openrac::Error("ArchipelagoRAC2 development client requires Going Commando USA v1.01");
+    if (mod.game() != "rac2" || (mod.version() != "ntsc" && mod.version() != "pal"))
+        throw openrac::Error("ArchipelagoRAC2 requires Going Commando USA v1.01 or Locked & Loaded SCES_516.07");
     auto token=mod.setting<std::string>("bridge_token");
     int port=mod.setting<int>("bridge_port");
     if (token.size()<16 || port<1 || port>65535)
@@ -36,5 +36,5 @@ void load(openrac::Mod& mod) {
     mod.info(runtime?"ArchipelagoRAC2 experimental native gameplay loaded":"ArchipelagoRAC2 connection validation loaded; gameplay setting is off");
 }
 }
-OPENRAC_MOD_CPP("aprac2-openrac-dev", "0.3.1", load)
+OPENRAC_MOD_CPP("aprac2-openrac-dev", "0.4.0", load)
 extern "C" OPENRAC_MOD_EXPORT void openrac_mod_unload(void) { bridge.stop(); runtime.reset(); }
