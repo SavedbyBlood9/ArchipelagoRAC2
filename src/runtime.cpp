@@ -23,11 +23,11 @@ void hook_new_game(){protect([]{current->new_game();});}
 void hook_kill(uint32_t moby,int32_t type){protect([&]{current->count_kill(moby,type);});}
 void hook_vendor(int32_t hide){protect([&]{current->vendor(hide);});}
 int32_t hook_price(){int32_t result=0;protect([&]{result=current->vendor_price();});return result;}
-int32_t hook_extras(){int32_t result=0;protect([&]{result=current->extras_menu();});return result;}
 static void(*original_levelup)(int32_t)=nullptr;
 void hook_levelup(int32_t item){original_levelup(item);}
 void frame(void*){try{current->tick();}catch(const std::exception& e){ /* tick reports its own errors */ (void)e;}}
 void save_changed(void*){current->changed_save();}
+void gameplay_query(void*,openrac_play_query* query){if(query)protect([&]{current->play_query(*query);});}
 struct Giver {const char* name; std::vector<int> items; bool parts; void(*original)(uint32_t)=nullptr; int mode=0; const char* signature="void(u32)";};
 Giver givers[]={
     {"Moby_DynamoPickup_Update",{36},false}, {"Moby_TractorBeamSeller_Update",{46},false},
@@ -36,15 +36,15 @@ Giver givers[]={
     {"Moby_GliderPickup_Update",{21},false}, {"Moby_LevitatorSeller_Update",{8},false},
     {"Moby_ChargeBootsRider_Update",{54},false}, {"Moby_RaceController_Update",{54},false},
     {"Moby_MapperReturn_Update",{5},false}, {"Moby_HypnomaticMaker_Update",{55},true},
-    {"APRac2_EndakoRescue",{2,3},false},
-    {"APRac2_TaboraWrench",{},false,nullptr,2},
-    {"APRac2_PrisonWrench",{},false,nullptr,3},
-    {"APRac2_TodanoTrader",{7},false,nullptr,4},
-    {"APRac2_PrisonPlumber",{49},false,nullptr,5,"void(i32)"},
-    {"APRac2_PrisonController",{},false,nullptr,6},
-    {"APRac2_SiberiusThief",{},false,nullptr,7},
-    {"APRac2_BoldanCutscene",{},false,nullptr,8},
-    {"APRac2_HypnomaticPart",{},false,nullptr,9},
+    {"Moby_EndakoRescue_Update",{2,3},false},
+    {"Moby_TaboraWrench_Update",{},false,nullptr,2},
+    {"Moby_PrisonWrench_Init",{},false,nullptr,3},
+    {"Moby_TodanoTrader_Update",{7},false,nullptr,4},
+    {"Moby_PrisonPlumber_Update",{49},false,nullptr,5,"void(i32)"},
+    {"Moby_PrisonController_Update",{},false,nullptr,6},
+    {"Moby_SiberiusThief_Update",{},false,nullptr,7},
+    {"Moby_BoldanCutscene_Update",{},false,nullptr,8},
+    {"Moby_HypnomaticPart_Update",{},false,nullptr,9},
 };
 template<int N>void giver_hook(uint32_t moby){protect([&]{auto& g=givers[N];current->giver(g.original,moby,g.items,g.parts,g.mode);});}
 void(*giver_callbacks[])(uint32_t)={giver_hook<0>,giver_hook<1>,giver_hook<2>,giver_hook<3>,giver_hook<4>,giver_hook<5>,
@@ -60,8 +60,8 @@ Runtime::Runtime(const openrac_api* api,openrac_mod* mod,Bridge& bridge):api_(ap
     for(auto& row:data_["check_maps"]["PLANET_UNLOCK_TO_LOCATION_ID"])
         planet_locations_[row["game_value"].get<int>()]=row["location_id"].get<int>();
 }
-Runtime::~Runtime(){write8(0x1A7B51,0);}
-void Runtime::fault(const std::string& reason){enabled_=false;error_=true;write8(0x1A7B51,0);status("ArchipelagoRAC2 stopped: "+reason);api_->play_travel(mod_,-1);}
+Runtime::~Runtime()=default;
+void Runtime::fault(const std::string& reason){enabled_=false;error_=true;status("ArchipelagoRAC2 stopped: "+reason);api_->play_travel(mod_,-1);}
 uint32_t Runtime::address(const char* key)const{return data_["addresses"].at(key).get<uint32_t>();}
 uint32_t Runtime::memory_address(uint32_t primary)const{return api_->relocate_data(disc_address(api_->version?api_->version:"ntsc",primary));}
 uint8_t Runtime::read8(uint32_t addr)const{return api_->memory[memory_address(addr)];}
@@ -75,7 +75,7 @@ void Runtime::install(){
     current=this;
     auto take=[&](const char* name,const char* sig,void* replacement,void** original){
         if(api_->hook(mod_,name,sig,replacement,original)!=OPENRAC_HOOK_OK)
-            throw std::runtime_error(std::string("ArchipelagoRAC2 native gameplay needs the custom-host hook: ")+name);
+            throw std::runtime_error(std::string("ArchipelagoRAC2 native gameplay requires the gameplay hook: ")+name);
     };
     take("Item_Give","void(i32)",(void*)hook_give,(void**)&give_);
     take("Item_Equip","i32(i32)",(void*)hook_equip,(void**)&equip_);
@@ -84,20 +84,22 @@ void Runtime::install(){
     take("Hero_UpdateCollectionProgress","void()",(void*)hook_progress,(void**)&progress_);
     take("Save_Serialize","void(u32)",(void*)hook_serialize,(void**)&serialize_);
     take("Save_NewGame","void()",(void*)hook_new_game,(void**)&new_game_);
-    take("APRac2_CountKill","void(u32,i32)",(void*)hook_kill,(void**)&kill_);
+    take("Moby_CountKill","void(u32,i32)",(void*)hook_kill,(void**)&kill_);
     take("Weapon_LevelUp","void(i32)",(void*)hook_levelup,(void**)&original_levelup);
     take("Vendor_BuildList","void(i32)",(void*)hook_vendor,(void**)&vendor_);
     take("Vendor_Price","i32()",(void*)hook_price,(void**)&price_);
-    take("APRac2_ExtrasMenu","i32()",(void*)hook_extras,(void**)&extras_);
     levelup_=original_levelup;
     for(std::size_t i=0;i<std::size(givers);++i)
         take(givers[i].name,givers[i].signature,(void*)giver_callbacks[i],(void**)&givers[i].original);
     if(api_->on_save_data(mod_,save_changed,nullptr)!=0||api_->on_frame(mod_,frame,nullptr)!=0)
         throw std::runtime_error("ArchipelagoRAC2 save/frame callbacks could not be installed");
+    if(api_->size < offsetof(openrac_api,on_play_query)+sizeof(api_->on_play_query) ||
+       api_->api_minor<40 || !api_->on_play_query ||
+       api_->on_play_query(mod_,OPENRAC_PLAY_QUERY_ALL,gameplay_query,nullptr)!=OPENRAC_HOOK_OK)
+        throw std::runtime_error("ArchipelagoRAC2 requires OpenRAC gameplay queries (API 1.40)");
     changed_save();
 }
 void Runtime::changed_save(){
-    write8(0x1A7B51,0);
     enabled_=false; error_=false; loads_=~0u; views_.clear();
     auto size=api_->save_data_get(mod_,nullptr,0);
     if(size>OPENRAC_SAVE_DATA_MAX){fault("Save metadata too large");return;}
@@ -109,7 +111,35 @@ void Runtime::changed_save(){
     for(int i=0;i<8;++i)if(read8(0x1A7360+i))fresh_=false;
 }
 void Runtime::new_game(){new_game_();enabled_=false;error_=false;journal=Journal{};fresh_=true;loads_=~0u;}
-int Runtime::extras_menu(){return extras_();}
+void Runtime::play_query(openrac_play_query& query){
+    if(!enabled_||query.size<sizeof(openrac_play_query))return;
+    switch(query.kind){
+    case OPENRAC_PLAY_QUERY_CHALLENGE_AVAILABLE:
+        if(options_.value("free_challenge_selection",0))query.value=1;
+        break;
+    case OPENRAC_PLAY_QUERY_ITEM_RESPAWN:
+        query.value=0; // Received equipment cannot trigger a vanilla return/spawn branch.
+        break;
+    case OPENRAC_PLAY_QUERY_REVISIT_BOLTS:
+    case OPENRAC_PLAY_QUERY_REVISIT_XP:
+        if(options_.value("no_revisit_reward_change",0))query.value=query.alternate;
+        break;
+    case OPENRAC_PLAY_QUERY_MENU_TEXT:
+    case OPENRAC_PLAY_QUERY_MENU_DATA:
+        if(query.index>=0&&query.index<2)query.value=query.alternate;
+        break;
+    case OPENRAC_PLAY_QUERY_MENU_ACTION:
+        if(query.index==0){
+            if(api_->play_travel(mod_,24)==0)query.value=0;
+        }
+        break;
+    case OPENRAC_PLAY_QUERY_HERO_OVERRIDE:
+        if(query.index==50)query.value=read8(address("secondary_inventory")+50)?1:0;
+        break;
+    default:break;
+    }
+}
+
 int Runtime::count(int item)const{return static_cast<int>(std::count(journal.applied.begin(),journal.applied.end(),item));}
 void Runtime::view(uint32_t addr,uint8_t shown,int location){views_.push_back({addr,read8(addr),shown,location});write8(addr,shown);}
 void Runtime::restore_views(std::size_t base){for(auto i=views_.size();i>base;--i)write8(views_[i-1].address,views_[i-1].real);views_.resize(base);}
@@ -219,8 +249,6 @@ void Runtime::initialize(){
     if(level_!=24)api_->play_travel(mod_,24);
 }
 void Runtime::apply_options(){
-    write8(0x1A7B51,169);write8(0x1A7B52,82);write8(0x1A7B53,50);
-    write8(0x1A7B58,static_cast<uint8_t>(1|(options_.value("free_challenge_selection",0)?2:0)|(options_.value("no_revisit_reward_change",0)?4:0)));
     if(options_.value("skip_wupash_nebula",0))write8(address("wupash_complete_flag"),1);
     write8(address("easy_cutscene_skip"),1);
     for(auto& row:data_["addresses"]["cutscene_flags"]){uint32_t a=row[0];write8(a,read8(a)|row[1].get<int>());}
@@ -372,7 +400,7 @@ void Runtime::publish(){
     bridge_.send(json{{"type","checks"},{"identity",identity_},{"locations",journal.checks},
         {"received",journal.cursor},{"bolts",read32(address("current_bolts"))},
         {"platinum",std::min(40,count(301))},{"nanotech_boosts",std::min(10,count(302))},
-        {"native_flags",read8(0x1A7B58)},{"level",level_}});
+        {"native_flags",enabled_?(1|(options_.value("free_challenge_selection",0)?2:0)|(options_.value("no_revisit_reward_change",0)?4:0)):0},{"level",level_}});
     if(journal.goal)bridge_.send(json{{"type","goal"},{"identity",identity_}});
 }
 void Runtime::tick(){openrac_play_status st{};st.size=sizeof st;if(api_->play_status(&st)==0)step(bridge_.snapshot(),st);}

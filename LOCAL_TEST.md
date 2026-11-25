@@ -1,3 +1,5 @@
+> Historical validation of the 0.3/0.4 private-host implementation. For the API 1.40 preview, see README.md and GAMEPLAY_QUERIES.md. Old setup commands below refer to the archived releases.
+
 # Local native gameplay validation
 
 On 2026-11-19, built a custom Going Commando USA v1.01 headless host from the pinned OpenRAC source with the supplied native hooks and overrides.

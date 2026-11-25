@@ -1,4 +1,4 @@
-"""Connect Archipelago, then launch the custom host with isolated cards/settings/plugins."""
+"""Connect Archipelago, then launch the API-preview host with isolated cards/settings/plugins."""
 import argparse
 import asyncio
 import json
@@ -29,14 +29,14 @@ if detected is None:p.error('--data-root must contain an extracted supported rac
 if a.region!='auto' and a.region!=detected:p.error('Selected region does not match the extracted game data')
 region=detected
 if a.host is None:
-    a.host=ROOT.parents[1]/('work/OpenRAC/port/build/archipelagorac2-pal/openrac-rac2-pal.exe' if region=='pal' else 'work/OpenRAC/port/build/aprac2-headless/openrac-rac2-ntsc.exe')
-if not a.host.is_file():p.error('Custom host not found; build host-patch first or pass --host')
+    a.host=ROOT.parents[1]/('work/OpenRAC-hooks-split/port/build/api-queries-windowed/openrac-rac2-pal.exe' if region=='pal' else 'work/OpenRAC-hooks-split/port/build/api-queries-windowed/openrac-rac2-ntsc.exe')
+if not a.host.is_file():p.error('Windowed API-preview host not found; pass --host with an API 1.40 windowed host')
 if not (a.data_root/'iso_data/rac2').is_dir():p.error('--data-root must contain extracted iso_data/rac2')
 levels=a.data_root/'port'/region
 if not (levels/'level_24/manifest.json').is_file():p.error('--data-root must also contain extracted port/'+region+' rendering assets')
 try:import websockets
 except ImportError:p.error('Install the sidecar first: python -m pip install -r client/requirements.txt')
-run=(ROOT/'local-play/pal') if region=='pal' else (ROOT/'local-play')
+run=(ROOT/'local-play/api40/pal') if region=='pal' else (ROOT/'local-play/api40/ntsc')
 data=run/'data';data.mkdir(parents=True,exist_ok=True)
 assets=data/'iso_data';target=(a.data_root/'iso_data').resolve()
 if assets.exists():
@@ -47,7 +47,7 @@ else:
     command='New-Item -ItemType Junction -Path '+quote(assets)+' -Target '+quote(target)+' | Out-Null'
     subprocess.run(['powershell.exe','-NoProfile','-Command',command],check=True,creationflags=subprocess.CREATE_NO_WINDOW)
 plugins=run/'plugins';mod=plugins/'aprac2-openrac-dev';mod.mkdir(parents=True,exist_ok=True)
-archive=ROOT/'dist/ArchipelagoRAC2-0.4.0-windows-x86_64.zip'
+archive=ROOT/'dist/ArchipelagoRAC2-0.5.0-windows-x86_64.zip'
 with zipfile.ZipFile(archive) as z:z.extractall(mod)
 with socket.socket() as candidate:
     candidate.bind(('127.0.0.1',0));port=candidate.getsockname()[1]

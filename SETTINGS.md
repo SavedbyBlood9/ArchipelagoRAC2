@@ -1,6 +1,6 @@
 # Original YAML settings
 
-USA v1.01 and PAL SCES_516.07 share the same YAML template. All 15 scalar game options retain upstream defaults, ranges and generation rules. All are transported in native slot data. Native behavior below requires experimental gameplay on the patched host; implementation does not establish full playthrough parity.
+USA v1.01 and PAL SCES_516.07 share the same YAML template. All 15 scalar game options retain upstream defaults, ranges and generation rules. All are transported in native slot data. Native behavior below requires experimental gameplay on an API 1.40 host; implementation does not establish full playthrough parity.
 
 | YAML setting | Implementation |
 |---|---|
@@ -11,9 +11,9 @@ USA v1.01 and PAL SCES_516.07 share the same YAML template. All 15 scalar game o
 | exclude_very_expensive_items | Original RYNO II/Zodiac placement rules |
 | skip_wupash_nebula | Native completion flag before travel |
 | enable_bolt_multiplier | Native kill reward callback temporarily enables the multiplier outside NG+ |
-| no_revisit_reward_change | Gated native level-data override retains base bolt and XP rewards |
+| no_revisit_reward_change | Mod-owned query level-data override retains base bolt and XP rewards |
 | no_kill_reward_degradation | Native repeated-kill scale table set to 100% |
-| free_challenge_selection | Gated native arena, hoverbike and spaceship menu/input overrides |
+| free_challenge_selection | Mod-owned query arena, hoverbike and spaceship menu/input overrides |
 | nanotech_xp_multiplier | Original inverse scaling of health XP requirements (20..600%, default 100) |
 | weapon_xp_multiplier | Original inverse scaling of weapon XP requirements (30..600%, default 100) |
 | extra_spaceship_challenge_locations | Original nine optional checks and native mission-flag scanning |

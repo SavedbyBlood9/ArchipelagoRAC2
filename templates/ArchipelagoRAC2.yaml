@@ -1,6 +1,6 @@
 # ArchipelagoRAC2 development template. Same options and defaults as evilwb/APRac2.
 # Install ArchipelagoRAC2.apworld instead of the PS2 APWorld, not alongside it.
-# Experimental native gameplay requires the patched OpenRAC host; see README.md.
+# Experimental native gameplay requires OpenRAC gameplay queries (API 1.40); see README.md.
 #
 # Q. What is this file?
 # A. This file contains options which allow you to configure your multiworld experience while allowing
