@@ -29,12 +29,12 @@ void load(openrac::Mod& mod) {
         if (state.is_null()) line="ArchipelagoRAC2: waiting for the local sidecar";
         else if (!state.value("error",std::string{}).empty()) line="ArchipelagoRAC2: "+state["error"].get<std::string>();
         else if (state.value("synced",false)) {
-            line="ArchipelagoRAC2: native seed and YAML received. Enable experimental gameplay on the patched host to play.";
+            line="ArchipelagoRAC2: native seed and YAML received. Enable experimental gameplay on an API 1.40 host to play.";
         } else line="ArchipelagoRAC2: waiting for the Archipelago slot and item synchronization";
         if (line!=last) { mod.info(line); last=line; }
     });
     mod.info(runtime?"ArchipelagoRAC2 experimental native gameplay loaded":"ArchipelagoRAC2 connection validation loaded; gameplay setting is off");
 }
 }
-OPENRAC_MOD_CPP("aprac2-openrac-dev", "0.4.0", load)
+OPENRAC_MOD_CPP("aprac2-openrac-dev", "0.5.0", load)
 extern "C" OPENRAC_MOD_EXPORT void openrac_mod_unload(void) { bridge.stop(); runtime.reset(); }

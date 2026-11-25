@@ -2,11 +2,11 @@
   "format": 2,
   "id": "aprac2-openrac-dev",
   "name": "ArchipelagoRAC2",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "author": "ArchipelagoRAC2 contributors; based on APRac2 by evilwb / Will Becker",
-  "description": "Experimental native ArchipelagoRAC2 gameplay and Archipelago bridge for Going Commando USA v1.01 and Locked & Loaded PAL SCES_516.07. Gameplay requires the included OpenRAC source patch. Based on evilwb/APRac2: https://github.com/evilwb/APRac2; native host by OpenRAC: https://github.com/OpenRAC/OpenRAC.",
+  "description": "Experimental Archipelago multiworld for Going Commando USA v1.01 and Locked & Loaded PAL. Gameplay decisions run in the mod using OpenRAC API 1.40 queries; no private host overrides or activation bytes. Based on evilwb/APRac2.",
   "license": "MIT",
-  "api": "1.19",
+  "api": "1.40",
   "games": {
     "rac2": [
       "ntsc",
@@ -21,11 +21,10 @@
     "Hero_UpdateCollectionProgress",
     "Save_Serialize",
     "Save_NewGame",
-    "APRac2_CountKill",
+    "Moby_CountKill",
     "Weapon_LevelUp",
     "Vendor_BuildList",
     "Vendor_Price",
-    "APRac2_ExtrasMenu",
     "Moby_DynamoPickup_Update",
     "Moby_TractorBeamSeller_Update",
     "Moby_BoxBreakerPickup_Update",
@@ -38,15 +37,15 @@
     "Moby_RaceController_Update",
     "Moby_MapperReturn_Update",
     "Moby_HypnomaticMaker_Update",
-    "APRac2_EndakoRescue",
-    "APRac2_TaboraWrench",
-    "APRac2_PrisonWrench",
-    "APRac2_TodanoTrader",
-    "APRac2_PrisonPlumber",
-    "APRac2_PrisonController",
-    "APRac2_SiberiusThief",
-    "APRac2_BoldanCutscene",
-    "APRac2_HypnomaticPart"
+    "Moby_EndakoRescue_Update",
+    "Moby_TaboraWrench_Update",
+    "Moby_PrisonWrench_Init",
+    "Moby_TodanoTrader_Update",
+    "Moby_PrisonPlumber_Update",
+    "Moby_PrisonController_Update",
+    "Moby_SiberiusThief_Update",
+    "Moby_BoldanCutscene_Update",
+    "Moby_HypnomaticPart_Update"
   ],
   "settings": [
     {
@@ -54,7 +53,7 @@
       "name": "Experimental native gameplay",
       "type": "bool",
       "default": false,
-      "description": "Requires the custom OpenRAC host hooks. Experimental: a full campaign playthrough has not been validated."
+      "description": "Requires the OpenRAC gameplay-query API 1.40 integration. Full campaigns remain experimental."
     },
     {
       "key": "bridge_port",

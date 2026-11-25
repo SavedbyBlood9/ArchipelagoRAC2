@@ -2,7 +2,7 @@
 
 ArchipelagoRAC2 is an independent OpenRAC adaptation of **[APRac2 by evilwb / Will Becker](https://github.com/evilwb/APRac2)**. APRac2 provided the original Going Commando Archipelago implementation, item and location definitions, world generation, access logic, YAML settings and gameplay behavior used as the basis for this port. Original copyright: Copyright (c) 2024 Will Becker. Its MIT license is retained in `third_party/APRac2-LICENSE.md` and the APWorld's upstream license notice. Native release ZIPs also bundle that original notice verbatim as `LICENSE.APRac2`.
 
-**[OpenRAC](https://github.com/OpenRAC/OpenRAC)** provided the native game host and mod SDK. The native host overrides derive from **[OpenRAC/rac2-decomp](https://github.com/OpenRAC/rac2-decomp)** and retain their GPL-3.0-only notices and license under `host-patch/`. OpenRAC's SDK is an external MIT dependency.
+**[OpenRAC](https://github.com/OpenRAC/OpenRAC)** provided the native game host and mod SDK. The public gameplay-query integration in OpenRAC is based on **[OpenRAC/rac2-decomp](https://github.com/OpenRAC/rac2-decomp)** and is maintained under OpenRAC's GPL licenses. This mod no longer carries or generates private game-function replacements. OpenRAC's SDK is an external MIT dependency.
 
 Additional project dependencies and references:
 

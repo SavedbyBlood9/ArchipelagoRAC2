@@ -1,3 +1,21 @@
+# API-preview validation (0.5.0)
+
+Passed on Windows x86-64 using the proposed public API 1.40 and the standard SDK binding catalogue:
+
+- Seven native CTest cases, including USA/PAL active-query behavior, independent physical/received Box Breaker flags, disabled YAML options, journal and transport tests. Private activation bytes remain untouched.
+- Ten Python bridge/contract tests and three official Archipelago world/fill/two-slot tests.
+- Query registry tests cover default passthrough, ownership conflicts, unload, callback exceptions, reentrancy and invalid outputs. Four source-generation tests validate all twenty query-point functions on all three discs and reject audited source drift.
+- 99 SDK tool tests pass with native Windows ABI generation. Existing upstream ABI rows remain unchanged; Linux-target ABI verification remains for CI.
+- RAC2 parity reports zero problems; parity suites pass (12 + 2). Launcher core: 608 passed, one existing ignored.
+- USA and PAL API hosts compiled and each completed an isolated 2,400-frame synthetic campaign with bridge authentication, twelve receipts, 20,000 bolts, one platinum bolt, one nanotech boost and clean exit. These runs used neutral query integration, not the legacy private-host patch. The final merged USA/PAL hosts also completed those runs: USA emitted 13 bridge reports, PAL 14; both exited 0 with all twelve receipts applied. The final API commit adds documentation/notices and a formatting-only declaration correction to the built integration.
+- Native ZIP packaging uses public bindings and verifies the original APRac2 MIT notice byte for byte. No retail assets, generated game-function bodies or host executables are distributed.
+
+Full campaigns, every challenge/menu query interaction, real multiworld completion and memory-card round trips remain unverified. USA v2.00 has source/query generation coverage, but no runtime test and no mod memory profile. Stock releases cannot run this preview until upstream accepts and releases the proposed API.
+
+The historical results below describe the old private-host releases, not the new API-preview build.
+
+---
+
 # Validation: 0.3.0 experimental
 
 Passed on Windows x86-64:

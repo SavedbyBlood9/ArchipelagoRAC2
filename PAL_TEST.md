@@ -1,3 +1,5 @@
+> Historical validation of the 0.3/0.4 private-host implementation. For the API 1.40 preview, see README.md and GAMEPLAY_QUERIES.md. Old setup commands below refer to the archived releases.
+
 # PAL SCES_516.07 local validation
 
 Disc: Ratchet & Clank 2 (Europe, Australia), SCES_516.07, MD5 `e184fc2a495a4654f748a8e8c587261c`. OpenRAC develop `cef20495798f314cad4659bb3e9a457dfcec865a`; rac2-decomp `4ea93ceaf43aec055e19211d36512e847860bac2`. Windows x86-64 graphical host, API 1.19, mod 0.4.0.

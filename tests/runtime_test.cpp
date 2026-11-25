@@ -59,15 +59,25 @@ int hook(openrac_mod*,const char* name,const char*,void* fn,void** original){
     else if(n=="PlatinumBolts_CountTotal")*original=(void*)original_platinum;
     else if(n=="Save_Serialize")*original=(void*)original_serialize;
     else if(n=="Save_NewGame")*original=(void*)original_newgame;
-    else if(n=="APRac2_CountKill")*original=(void*)original_kill;
+    else if(n=="Moby_CountKill")*original=(void*)original_kill;
     else if(n=="Vendor_BuildList")*original=(void*)original_vendor;
     else if(n=="Vendor_Price")*original=(void*)original_price;
     else if(n=="Weapon_LevelUp")*original=(void*)original_level;
-    else if(n=="APRac2_ExtrasMenu")*original=(void*)original_extras;
+    else if(n=="Menu_Extras")*original=(void*)original_extras;
     else *original=(void*)original_giver;
     return 0;
 }
 int frame_callback(openrac_mod*,openrac_frame_fn,void*){return 0;}
+openrac_play_query_fn registered_query=nullptr;
+void* query_user=nullptr;
+int query_callback(openrac_mod*,uint32_t kinds,openrac_play_query_fn fn,void* user){
+    require(kinds==OPENRAC_PLAY_QUERY_ALL);registered_query=fn;query_user=user;return 0;
+}
+int decision(uint32_t kind,int original,int alternate,int index=0){
+    openrac_play_query query{sizeof query,kind,24,0,index,original,alternate,original};
+    require(registered_query);registered_query(query_user,&query);return query.value;
+}
+
 uint32_t save_get(openrac_mod*,void* out,uint32_t size){if(out&&size>=metadata.size())std::memcpy(out,metadata.data(),metadata.size());return static_cast<uint32_t>(metadata.size());}
 int save_set(openrac_mod*,const void* bytes,uint32_t size){metadata.assign(static_cast<const char*>(bytes),size);return 0;}
 int go(openrac_mod*,int level){travel=level;return 0;}
@@ -84,11 +94,12 @@ int half(uint32_t addr){uint16_t v;std::memcpy(&v,memory.at(addr),2);return v;}
 int bolts(){int32_t n;std::memcpy(&n,memory.at(0x1A79F8),4);return n;}
 int main(int argc,char** argv){
     pal_fixture=argc>1&&std::string(argv[1])=="--pal";
-    openrac_api api{};api.size=sizeof api;api.api_major=1;api.api_minor=19;api.memory=memory.data();
+    openrac_api api{};api.size=sizeof api;api.api_major=1;api.api_minor=40;api.memory=memory.data();
     api.game="rac2";api.version=pal_fixture?"pal":"ntsc";
     api.relocate_data=relocate;api.log=log_line;api.hook=hook;api.on_frame=frame_callback;api.on_save_data=frame_callback;
-    api.save_data_get=save_get;api.save_data_set=save_set;api.play_travel=go;api.moby_list=mobys;
+    api.on_play_query=query_callback;api.save_data_get=save_get;api.save_data_set=save_set;api.play_travel=go;api.moby_list=mobys;
     rac2ap::Bridge bridge;rac2ap::Runtime game(&api,nullptr,bridge);game.install();
+    require(decision(OPENRAC_PLAY_QUERY_CHALLENGE_AVAILABLE,0,1)==0); // Unbound campaigns keep retail decisions.
     json identity={{"seed","seed"},{"team",0},{"slot",1}};
     json options={{"skip_wupash_nebula",1},{"nanotech_xp_multiplier",600},{"weapon_xp_multiplier",30},
                   {"extend_weapon_progression",1},{"death_link",1},
@@ -96,10 +107,19 @@ int main(int argc,char** argv){
                   {"free_challenge_selection",1},{"first_person_mode_glitch_in_logic",3},
                   {"randomize_megacorp_vendor",1},{"randomize_gadgetron_vendor",1},
                   {"openrac",{{"active_locations",{10,12,13,14,32,33,31,86,143,180,300,301}}}}};
+    const bool default_options=argc>2&&std::string(argv[2])=="--default-options";
+    if(default_options){options["free_challenge_selection"]=0;options["no_revisit_reward_change"]=0;}
     json state={{"connected",true},{"synced",true},{"identity",identity},{"options",options},
                 {"items",json::array({{{"item",10}},{{"item",304}},{{"item",301}},{{"item",302}},{{"item",303}},{{"item",401}}})}};
     openrac_play_status status{};status.size=sizeof status;status.level=24;status.phase=OPENRAC_PLAY_PLAYING;status.loads=1;
     game.step(state,status);require(game.active());require(memory[0x1A7AF8+36]==1);require(bolts()==10000);
+    if(default_options){
+        require(decision(OPENRAC_PLAY_QUERY_CHALLENGE_AVAILABLE,0,1)==0);
+        require(decision(OPENRAC_PLAY_QUERY_CHALLENGE_AVAILABLE,1,1)==1);
+        require(decision(OPENRAC_PLAY_QUERY_REVISIT_BOLTS,50,500)==50);
+        require(decision(OPENRAC_PLAY_QUERY_REVISIT_XP,10,100)==10);
+        return 0;
+    }
     require(memory[0x1A7B30+36]==0); // Received ownership must not mark its physical pickup.
     require(memory[0x1A7AF8+10]==1&&game.item_equip(10)==10);
     require(half(0x239BA0+22*0xE0+0x6C)==1333&&half(0x239BA0-0x310+4)==30);
@@ -118,7 +138,20 @@ int main(int argc,char** argv){
     require(!game.journal.checks.count(32)&&!game.journal.checks.count(33));
     memory[0x139568+10]=0x4B;game.giver(wrench_pickup,0,{},false,2);
     require(game.journal.checks.count(86)&&memory[0x139568+10]==0x4B);
-    require(memory[0x1A7B58]==7);
+    require(memory[0x1A7B51]==0&&memory[0x1A7B52]==0&&memory[0x1A7B53]==0&&memory[0x1A7B58]==0);
+    require(decision(OPENRAC_PLAY_QUERY_CHALLENGE_AVAILABLE,0,1)==1);
+    require(decision(OPENRAC_PLAY_QUERY_ITEM_RESPAWN,1,0)==0);
+    require(decision(OPENRAC_PLAY_QUERY_REVISIT_BOLTS,50,500)==500);
+    require(decision(OPENRAC_PLAY_QUERY_REVISIT_XP,10,100)==100);
+    require(decision(OPENRAC_PLAY_QUERY_MENU_TEXT,0x2DC0,pal_fixture?0x1114:0x3202)==(pal_fixture?0x1114:0x3202));
+    require(decision(OPENRAC_PLAY_QUERY_MENU_DATA,0,0x234500)==0x234500);
+    require(decision(OPENRAC_PLAY_QUERY_MENU_TEXT,0x2DC0,0x3202,2)==0x2DC0);
+    require(decision(OPENRAC_PLAY_QUERY_HERO_OVERRIDE,1,0,50)==0);
+    memory[0x1A7AF8+50]=1;require(decision(OPENRAC_PLAY_QUERY_HERO_OVERRIDE,0,0,50)==0);
+    memory[0x1A7B30+50]=1;require(decision(OPENRAC_PLAY_QUERY_HERO_OVERRIDE,0,0,50)==1);
+    memory[0x1A7AF8+50]=0;memory[0x1A7B30+50]=0;
+    require(decision(OPENRAC_PLAY_QUERY_MENU_ACTION,1,0)==0&&travel==24);
+
     game.count_kill(0,0);require(kill_flag==1&&memory[0x1A7A0A]==0);
     for(int i=0;i<32;++i)require(memory[0x1A8858+i]==100);
     game.journal.visited.insert(1);memory[0x1A7AF8+22]=1;
@@ -140,7 +173,7 @@ int main(int argc,char** argv){
     status.level=20;victory=true;game.step(state,status);require(game.journal.goal);
     state["connected"]=true;state["identity"]["seed"]="foreign";
     bool rejected=false;try{game.step(state,status);}catch(const std::exception&){rejected=true;}
-    require(rejected&&!game.active());int before=grants;game.item_give(36);require(grants==before);
+    require(rejected&&!game.active());require(decision(OPENRAC_PLAY_QUERY_CHALLENGE_AVAILABLE,0,1)==0);require(decision(OPENRAC_PLAY_QUERY_ITEM_RESPAWN,1,0)==1);int before=grants;game.item_give(36);require(grants==before);
     std::cout<<"actual adapter: receipts, currency, virtual counts, NPC saves, rollback and foreign saves passed\n";
 }
 

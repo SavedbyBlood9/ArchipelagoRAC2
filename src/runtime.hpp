@@ -29,7 +29,7 @@ public:
     void count_kill(uint32_t moby,int32_t type);
     void vendor(int32_t hide_unowned);
     int vendor_price();
-    int extras_menu();
+    void play_query(openrac_play_query& query);
     Journal journal;
     bool active() const { return enabled_; }
 private:
@@ -61,7 +61,6 @@ private:
     unsigned death_id_=0;
     void (*vendor_)(int32_t)=nullptr;
     int32_t (*price_)(void)=nullptr;
-    int32_t (*extras_)(void)=nullptr;
     bool vendor_ammo_=false;
     json scouts_;
     uint32_t address(const char* key) const;
