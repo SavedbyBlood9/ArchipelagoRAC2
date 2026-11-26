@@ -4,7 +4,7 @@ Archipelago multiworld for Going Commando USA v1.01 and Locked & Loaded PAL SCES
 
 This version moves the twenty private gameplay overrides into mod-owned decisions using the proposed OpenRAC gameplay-query API 1.40. It uses generic SDK hook names and no activation bytes, private packaging aliases, generated game-function bodies or host-patch installer.
 
-**API 1.40 and the hooks this build needs are merged into OpenRAC's `develop` branch but not yet in a release.** Until OpenRAC publishes them, use a host built from `develop`. Once released, the same mod runs on a stock OpenRAC without a separate APRac2 host patch. The released v0.4.0 remains a separate legacy custom-host build.
+**API 1.40 and the hooks this build needs are in OpenRAC's dev launcher (`v1.1.1-dev.1291` and later) but not yet in a stable release.** Until OpenRAC publishes them, use the dev launcher or a host built from `develop`. Once released, the same mod runs on a stock OpenRAC without a separate APRac2 host patch. The released v0.4.0 remains a separate legacy custom-host build.
 
 The mod's id is `archipelago-rac2` from 0.5.0 on (0.4.0 and earlier were `aprac2-openrac-dev`). The launcher treats it as a new mod: remove the old one, and set the token and port again.
 
@@ -54,7 +54,7 @@ python tools/package_native_mod.py --sdk C:/path/to/OpenRAC/sdk --input build/pa
 
 The archive is `archipelago-rac2-<version>-<platform>.zip`, the name the launcher and the OpenRAC mod index look for. `-DAPRAC2_PROBE=ON` also builds the development probe (`aprac2-openrac-probe`), which releases leave out.
 
-A tag `v<version>` makes the workflow (`.github/workflows/build.yml`) build and test the client on Windows, Linux and macOS, build it for Android, and publish every platform's archive, the APWorld, the YAML template and `SHA256SUMS` as a pre-release. It needs SDK 1.40 released, so it runs only on a tag or by hand until then.
+A tag `v<version>` makes the workflow (`.github/workflows/build.yml`) build and test the client on Windows, Linux and macOS, build it for Android, and publish every platform's archive, the APWorld, the YAML template and `SHA256SUMS` as a pre-release. Every push and pull request is built and tested too. Until OpenRAC releases Mod SDK 1.40, the workflow builds against OpenRAC's own `sdk/` at the commit its dev launcher was built from (`OPENRAC_REF` in the workflow), so releases match that dev build.
 
 Packaging uses the SDK's standard bindings and byte-verifies the original APRac2 MIT notice as LICENSE.APRac2. Mod/sidecar/world code is MIT; nlohmann/json is MIT. The proposed OpenRAC query integration is maintained separately under OpenRAC's licenses. No retail code or assets are bundled.
 
