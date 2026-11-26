@@ -1,5 +1,6 @@
 """Exercise the native world against an official Archipelago checkout, including restrictive fill."""
 import argparse
+import importlib.util
 import hashlib
 import json
 import os
@@ -83,6 +84,14 @@ class WorldTest(unittest.TestCase):
                 self.assertEqual(location.access_rule(state),not needs_all)
                 for name in full[1:]:state.collect(world.create_item(name),True)
                 self.assertTrue(location.access_rule(state))
+
+    def test_logic_doc_is_current(self):
+        # LOGIC.md is generated from the rules (tools/generate_logic_doc.py): rerun it after a change.
+        spec=importlib.util.spec_from_file_location('generate_logic_doc',root/'tools/generate_logic_doc.py')
+        doc=importlib.util.module_from_spec(spec);spec.loader.exec_module(doc)
+        expected=doc.render(*doc.load_world(args.archipelago))
+        self.assertEqual((root/'LOGIC.md').read_text(encoding='utf-8'),expected,
+                         'LOGIC.md is out of date: run tools/generate_logic_doc.py')
 
     def test_two_slots(self):
         multi=setup_multiworld([Rac2World,Rac2World],seed=999,
