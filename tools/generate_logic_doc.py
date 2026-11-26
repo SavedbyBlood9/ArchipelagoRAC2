@@ -146,7 +146,7 @@ def render(Items, Planets):
         '',
         "Encoded logic for ArchipelagoRAC2: APRac2's access rules, with two changes. Snivelak: "
         "Rescue Angela takes the glitch from Easy up, as its neighbours do; Maktar: Jamming Array - "
-        "Platinum Bolt also needs the Heli-Pack with No Glitches. These are "
+        "Platinum Bolt also needs Jump (Heli-Pack or Thruster-Pack) with No Glitches. These are "
         "the generator's rules, not a guarantee that every physical obstacle has been modeled.",
         '',
         '## How to read the list',

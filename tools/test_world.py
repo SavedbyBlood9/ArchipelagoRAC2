@@ -86,21 +86,22 @@ class WorldTest(unittest.TestCase):
                 self.assertTrue(location.access_rule(state))
 
     def test_maktar_jamming_array_pb_glitch_levels(self):
-        # The Tractor Beam at every level; with No Glitches, the Heli-Pack too.
+        # The Tractor Beam at every level; with No Glitches, Heli-Pack or Thruster-Pack too.
         from BaseClasses import CollectionState
         for mode in range(4):
-            with self.subTest(mode=mode):
-                multi=setup_multiworld(Rac2World,seed=4242,options=dict(first_person_mode_glitch_in_logic=mode))
-                world=multi.worlds[1]
-                location=multi.get_location('Maktar: Jamming Array - Platinum Bolt',1)
-                state=CollectionState(multi)
-                state.collect(world.create_item('Heli-Pack'),True)
-                self.assertFalse(location.access_rule(state))
-                state=CollectionState(multi)
-                state.collect(world.create_item('Tractor Beam'),True)
-                self.assertEqual(location.access_rule(state),mode>=1)
-                state.collect(world.create_item('Heli-Pack'),True)
-                self.assertTrue(location.access_rule(state))
+            for jump in ('Heli-Pack','Thruster-Pack'):
+                with self.subTest(mode=mode,jump=jump):
+                    multi=setup_multiworld(Rac2World,seed=4242,options=dict(first_person_mode_glitch_in_logic=mode))
+                    world=multi.worlds[1]
+                    location=multi.get_location('Maktar: Jamming Array - Platinum Bolt',1)
+                    state=CollectionState(multi)
+                    state.collect(world.create_item(jump),True)
+                    self.assertFalse(location.access_rule(state))
+                    state=CollectionState(multi)
+                    state.collect(world.create_item('Tractor Beam'),True)
+                    self.assertEqual(location.access_rule(state),mode>=1)
+                    state.collect(world.create_item(jump),True)
+                    self.assertTrue(location.access_rule(state))
 
     def test_logic_doc_is_current(self):
         # LOGIC.md is generated from the rules (tools/generate_logic_doc.py): rerun it after a change.

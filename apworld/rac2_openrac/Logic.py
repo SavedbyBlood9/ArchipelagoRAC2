@@ -132,12 +132,13 @@ def maktar_deactivate_jamming_array_rule(state: CollectionState, player: int) ->
 def maktar_jamming_array_pb_rule(state: CollectionState, player: int) -> bool:
     options = get_options(state, player)
 
-    # ArchipelagoRAC2: with No Glitches, the Heli-Pack too (APRac2 had the Tractor Beam only).
+    # ArchipelagoRAC2: with No Glitches, Heli-Pack or Thruster-Pack too (APRac2 had the Tractor
+    # Beam only).
     if options.first_person_mode_glitch_in_logic >= FIRST_PERSON_EASY:
         return can_tractor(state, player)
 
     return (can_tractor(state, player)
-            and can_heli(state, player))
+            and can_improved_jump(state, player))
 
 
 def endako_rescue_clank_rule(state: CollectionState, player: int) -> bool:
