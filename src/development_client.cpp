@@ -2,6 +2,7 @@
 // Connects the native game to Archipelago. Experimental gameplay requires the patched host.
 #include "openrac/mod.hpp"
 #include "bridge.hpp"
+#include "disc.hpp"
 #include "runtime.hpp"
 #include <memory>
 
@@ -10,8 +11,8 @@ rac2ap::Bridge bridge;
 std::string last;
 std::unique_ptr<rac2ap::Runtime> runtime;
 void load(openrac::Mod& mod) {
-    if (mod.game() != "rac2" || (mod.version() != "ntsc" && mod.version() != "pal"))
-        throw openrac::Error("ArchipelagoRAC2 requires Going Commando USA v1.01 or Locked & Loaded SCES_516.07");
+    if (mod.game() != "rac2" || !rac2ap::supported_disc(std::string(mod.version())))
+        throw openrac::Error("ArchipelagoRAC2 requires Going Commando USA v1.01 or v2.00, or Locked & Loaded SCES_516.07");
     auto token=mod.setting<std::string>("bridge_token");
     int port=mod.setting<int>("bridge_port");
     if (token.size()<16 || port<1 || port>65535)
@@ -36,5 +37,5 @@ void load(openrac::Mod& mod) {
     mod.info(runtime?"ArchipelagoRAC2 experimental native gameplay loaded":"ArchipelagoRAC2 connection validation loaded; gameplay setting is off");
 }
 }
-OPENRAC_MOD_CPP("archipelago-rac2", "0.5.0", load)
+OPENRAC_MOD_CPP("archipelago-rac2", "0.6.0", load)
 extern "C" OPENRAC_MOD_EXPORT void openrac_mod_unload(void) { bridge.stop(); runtime.reset(); }

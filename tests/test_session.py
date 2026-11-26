@@ -26,12 +26,14 @@ class SessionTest(unittest.TestCase):
     def test_pal_and_shared_seed_targets(self):
         fixture=Session('PAL');connected(fixture)
         data=copy.deepcopy(fixture.options)
-        for target in ('rac2','rac2/pal','rac2/ntsc'):
+        for target in ('rac2','rac2/pal','rac2/ntsc','rac2/ntsc2'):
             data['openrac']['target']=target
-            data['openrac']['supported_discs']=['ntsc','pal']
-            self.assertEqual(native.validate_slot_data(data)['openrac']['supported_discs'],['ntsc','pal'])
-        data['openrac']['supported_discs']=['ntsc2']
-        with self.assertRaises(ValueError):native.validate_slot_data(data)
+            for discs in (['ntsc','pal'],['ntsc','pal','ntsc2'],['ntsc2']):
+                data['openrac']['supported_discs']=discs
+                self.assertEqual(native.validate_slot_data(data)['openrac']['supported_discs'],discs)
+        for discs in (['jp'],['ntsc','ntsc'],[]):
+            data['openrac']['supported_discs']=discs
+            with self.assertRaises(ValueError):native.validate_slot_data(data)
 
     def test_connect_identity_and_all_options(self):
         session = Session('Tester', 'secret', 'unit')

@@ -8,7 +8,7 @@ p=argparse.ArgumentParser(description=__doc__)
 p.add_argument('--output',type=Path,default=root.parent/'ArchipelagoRAC2-source.zip')
 a=p.parse_args()
 excluded={'.git','__pycache__','local-play','build','.pytest_cache'}
-packages={'ArchipelagoRAC2.apworld','archipelago-rac2-0.5.0-windows-x86_64.zip','aprac2-openrac-probe-0.2.0-windows-x86_64.zip'}
+packages={'ArchipelagoRAC2.apworld','archipelago-rac2-0.6.0-windows-x86_64.zip','aprac2-openrac-probe-0.3.0-windows-x86_64.zip'}
 files=[]
 for path in sorted(root.rglob('*')):
     rel=path.relative_to(root)

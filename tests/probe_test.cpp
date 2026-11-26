@@ -51,6 +51,8 @@ int main() {
     api.game = "rac2"; api.version = "pal";
     require(openrac_mod_load(&api, nullptr) == 0 && replacements.size() == 5);
     api.version = "ntsc2"; replacements.clear();
+    require(openrac_mod_load(&api, nullptr) == 0 && replacements.size() == 5);
+    api.version = "jp"; replacements.clear();
     require(openrac_mod_load(&api, nullptr) != 0 && replacements.empty());
     api.version = "ntsc";
     for (const char* point : {"Item_Give", "Item_Equip", "Planet_Unlock", "Vendor_BuildList", "Level_Load"}) {
@@ -58,6 +60,6 @@ int main() {
         require(openrac_mod_load(&api, nullptr) != 0 && failed.find(point) != std::string::npos);
     }
     openrac_mod_info info{}; openrac_mod_query(&info);
-    require(std::string(info.id) == "aprac2-openrac-probe" && std::string(info.version) == "0.2.0");
+    require(std::string(info.id) == "aprac2-openrac-probe" && std::string(info.version) == "0.3.0");
     std::cout << "pass-through hooks, return values, disc guards and missing-hook failures passed\n";
 }

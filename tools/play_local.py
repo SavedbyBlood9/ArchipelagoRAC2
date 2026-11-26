@@ -15,7 +15,7 @@ p=argparse.ArgumentParser(description=__doc__)
 p.add_argument('--server',required=True)
 p.add_argument('--slot',required=True)
 p.add_argument('--password')
-p.add_argument('--region',choices=['auto','ntsc','pal'],default='auto')
+p.add_argument('--region',choices=['auto','ntsc','ntsc2','pal'],default='auto')
 p.add_argument('--host',type=Path)
 p.add_argument('--data-root',type=Path)
 a=p.parse_args()
@@ -26,17 +26,21 @@ if a.data_root is None:
 iso=a.data_root/'iso_data/rac2'
 detected='pal' if (iso/'SCES_516.07').is_file() else 'ntsc' if (iso/'SCUS_972.68').is_file() else None
 if detected is None:p.error('--data-root must contain an extracted supported rac2 executable')
+# USA v1.01 and v2.00 share SCUS_972.68: the extracted port/<disc> folder tells them apart.
+if detected=='ntsc' and (a.region=='ntsc2' or (a.region=='auto' and (a.data_root/'port/ntsc2').is_dir()
+                                                and not (a.data_root/'port/ntsc').is_dir())):
+    detected='ntsc2'
 if a.region!='auto' and a.region!=detected:p.error('Selected region does not match the extracted game data')
 region=detected
 if a.host is None:
-    a.host=ROOT.parents[1]/('work/OpenRAC-hooks-split/port/build/api-queries-windowed/openrac-rac2-pal.exe' if region=='pal' else 'work/OpenRAC-hooks-split/port/build/api-queries-windowed/openrac-rac2-ntsc.exe')
+    a.host=ROOT.parents[1]/f'work/OpenRAC-hooks-split/port/build/api-queries-windowed/openrac-rac2-{region}.exe'
 if not a.host.is_file():p.error('Windowed API-preview host not found; pass --host with an API 1.40 windowed host')
 if not (a.data_root/'iso_data/rac2').is_dir():p.error('--data-root must contain extracted iso_data/rac2')
 levels=a.data_root/'port'/region
 if not (levels/'level_24/manifest.json').is_file():p.error('--data-root must also contain extracted port/'+region+' rendering assets')
 try:import websockets
 except ImportError:p.error('Install the sidecar first: python -m pip install -r client/requirements.txt')
-run=(ROOT/'local-play/api40/pal') if region=='pal' else (ROOT/'local-play/api40/ntsc')
+run=ROOT/'local-play/api40'/region
 data=run/'data';data.mkdir(parents=True,exist_ok=True)
 assets=data/'iso_data';target=(a.data_root/'iso_data').resolve()
 if assets.exists():
@@ -47,7 +51,7 @@ else:
     command='New-Item -ItemType Junction -Path '+quote(assets)+' -Target '+quote(target)+' | Out-Null'
     subprocess.run(['powershell.exe','-NoProfile','-Command',command],check=True,creationflags=subprocess.CREATE_NO_WINDOW)
 plugins=run/'plugins';mod=plugins/'archipelago-rac2';mod.mkdir(parents=True,exist_ok=True)
-archive=ROOT/'dist/archipelago-rac2-0.5.0-windows-x86_64.zip'
+archive=ROOT/'dist/archipelago-rac2-0.6.0-windows-x86_64.zip'
 with zipfile.ZipFile(archive) as z:z.extractall(mod)
 with socket.socket() as candidate:
     candidate.bind(('127.0.0.1',0));port=candidate.getsockname()[1]

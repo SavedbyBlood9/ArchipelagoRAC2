@@ -6,14 +6,20 @@
 #include <vector>
 #include "runtime.hpp"
 using rac2ap::json;
-static bool pal_fixture=false;
-// Independent fixture offsets, checked against OpenRAC's PAL resident-data map.
-// The adapter receives raw guest memory; only the fake retail routines use this view.
+static bool pal_fixture=false,ntsc2_fixture=false;
+// Independent fixture offsets, checked against OpenRAC's PAL and USA v2.00 resident-data maps
+// (port/game/rac2-<disc>/release/data_moves.tsv). The adapter receives raw guest memory; only the
+// fake retail routines use this view.
 uint32_t fixture_address(uint32_t a){
-    if(!pal_fixture)return a;
-    if(a>=0x133B80&&a<=0x1A7900)return a+0x80;
-    if(a>=0x1A7930&&a<=0x1A7C04)return a+0x88;
-    if(a>=0x1A8630&&a<=0x1A9020)return a+0xB0;
+    if(pal_fixture){
+        if(a>=0x133B80&&a<=0x1A7900)return a+0x80;
+        if(a>=0x1A7930&&a<=0x1A7C04)return a+0x88;
+        if(a>=0x1A8630&&a<=0x1A9020)return a+0xB0;
+    }
+    if(ntsc2_fixture){
+        if(a>=0x1A7930&&a<=0x1A7C04)return a+0x8;
+        if(a>=0x215480&&a<=0x258D20)return a-0x80;
+    }
     return a;
 }
 struct FixtureMemory {
@@ -94,8 +100,9 @@ int half(uint32_t addr){uint16_t v;std::memcpy(&v,memory.at(addr),2);return v;}
 int bolts(){int32_t n;std::memcpy(&n,memory.at(0x1A79F8),4);return n;}
 int main(int argc,char** argv){
     pal_fixture=argc>1&&std::string(argv[1])=="--pal";
+    ntsc2_fixture=argc>1&&std::string(argv[1])=="--ntsc2";
     openrac_api api{};api.size=sizeof api;api.api_major=1;api.api_minor=40;api.memory=memory.data();
-    api.game="rac2";api.version=pal_fixture?"pal":"ntsc";
+    api.game="rac2";api.version=pal_fixture?"pal":ntsc2_fixture?"ntsc2":"ntsc";
     api.relocate_data=relocate;api.log=log_line;api.hook=hook;api.on_frame=frame_callback;api.on_save_data=frame_callback;
     api.on_play_query=query_callback;api.save_data_get=save_get;api.save_data_set=save_set;api.play_travel=go;api.moby_list=mobys;
     rac2ap::Bridge bridge;rac2ap::Runtime game(&api,nullptr,bridge);game.install();

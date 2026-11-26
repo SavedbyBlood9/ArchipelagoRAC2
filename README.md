@@ -1,6 +1,6 @@
-# ArchipelagoRAC2 0.5.0 (API preview)
+# ArchipelagoRAC2 0.6.0 (API preview)
 
-Archipelago multiworld for Going Commando USA v1.01 and Locked & Loaded PAL SCES_516.07 on OpenRAC. Original APRac2 game identity, item/location IDs, YAML options and access logic are retained.
+Archipelago multiworld for Going Commando USA v1.01 and v2.00 and Locked & Loaded PAL SCES_516.07 on OpenRAC. Original APRac2 game identity, item/location IDs, YAML options and access logic are retained.
 
 This version moves the twenty private gameplay overrides into mod-owned decisions using the proposed OpenRAC gameplay-query API 1.40. It uses generic SDK hook names and no activation bytes, private packaging aliases, generated game-function bodies or host-patch installer.
 
@@ -33,7 +33,7 @@ Use the matching API-preview graphical host and extracted assets:
 python tools/play_local.py --region pal --host PATH_TO_API40_EXE --data-root PATH_TO_PAL_DATA --server wss://archipelago.gg:PORT --slot YourSlotName
 ```
 
-Use `--region ntsc` for USA v1.01. The development workspace also has default host/data paths. API-preview cards, settings and logs stay under `local-play/api40/`; installed launcher files and existing cards are not replaced. No custom host executable or game assets are distributed.
+Use `--region ntsc` for USA v1.01 and `--region ntsc2` for USA v2.00 (both are `SCUS_972.68`; with `auto`, an extracted `port/ntsc2` and no `port/ntsc` means v2.00). The development workspace also has default host/data paths. API-preview cards, settings and logs stay under `local-play/api40/`; installed launcher files and existing cards are not replaced. No custom host executable or game assets are distributed.
 
 ## Build and package
 
@@ -57,5 +57,9 @@ The archive is `archipelago-rac2-<version>-<platform>.zip`, the name the launche
 A tag `v<version>` makes the workflow (`.github/workflows/build.yml`) build and test the client on Windows, Linux and macOS, build it for Android, and publish every platform's archive, the APWorld, the YAML template and `SHA256SUMS` as a pre-release. Every push and pull request is built and tested too. Until OpenRAC releases Mod SDK 1.40, the workflow builds against OpenRAC's own `sdk/` at the commit its dev launcher was built from (`OPENRAC_REF` in the workflow), so releases match that dev build.
 
 Packaging uses the SDK's standard bindings and byte-verifies the original APRac2 MIT notice as LICENSE.APRac2. Mod/sidecar/world code is MIT; nlohmann/json is MIT. The proposed OpenRAC query integration is maintained separately under OpenRAC's licenses. No retail code or assets are bundled.
+
+## Discs
+
+The mod's facts are USA v1.01 addresses. On PAL and USA v2.00 it translates each one through that disc's boot-program moves, generated from OpenRAC's `port/game/rac2-<disc>/release/data_moves.tsv` by `tools/generate_disc_profiles.py <OpenRAC checkout>` into `src/pal_boot_moves.hpp` and `src/ntsc2_boot_moves.hpp` (checked in, from OpenRAC `b005a7b`). Every address the mod reads or writes is in a mapped range on both. All 32 hook points and the 20 gameplay query points exist on all three discs. A seed lists the discs it was made for (`supported_discs`); seeds from before v2.00 list only `ntsc` and `pal`, which the mod does not enforce, so they play on v2.00 too.
 
 Full campaign and real multiworld completion remain experimental. Current and historical validation are distinguished in VALIDATION.md.

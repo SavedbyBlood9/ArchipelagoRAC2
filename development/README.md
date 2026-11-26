@@ -1,6 +1,6 @@
-# ArchipelagoRAC2 0.5.0 (API preview)
+# ArchipelagoRAC2 0.6.0 (API preview)
 
-Native Archipelago client for Going Commando USA v1.01 and Locked & Loaded PAL SCES_516.07. Requires the generic inventory/story hooks and proposed gameplay-query API 1.40. Current stock releases without that integration cannot load this preview.
+Native Archipelago client for Going Commando USA v1.01 and v2.00 and Locked & Loaded PAL SCES_516.07. Requires the generic inventory/story hooks and proposed gameplay-query API 1.40. Current stock releases without that integration cannot load this preview.
 
 Gameplay settings and the twenty formerly private override decisions run in the mod. No private activation bytes or host-patch installer are used. Connect the sidecar before starting a new campaign, configure the printed token/port, and enable experimental gameplay. Use separate API-preview cards and keep the previous release for rollback.
 
