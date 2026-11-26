@@ -4,7 +4,9 @@ Archipelago multiworld for Going Commando USA v1.01 and Locked & Loaded PAL SCES
 
 This version moves the twenty private gameplay overrides into mod-owned decisions using the proposed OpenRAC gameplay-query API 1.40. It uses generic SDK hook names and no activation bytes, private packaging aliases, generated game-function bodies or host-patch installer.
 
-**API 1.40 is an integration proposal, not a claim that current stock OpenRAC releases support this build.** Until that API and the required hooks are merged and released upstream, use the matching API-preview host. Once released, the same mod will use the ordinary API without a separate APRac2 host patch. The released v0.4.0 remains a separate legacy custom-host build.
+**API 1.40 and the hooks this build needs are merged into OpenRAC's `develop` branch but not yet in a release.** Until OpenRAC publishes them, use a host built from `develop`. Once released, the same mod runs on a stock OpenRAC without a separate APRac2 host patch. The released v0.4.0 remains a separate legacy custom-host build.
+
+The mod's id is `archipelago-rac2` from 0.5.0 on (0.4.0 and earlier were `aprac2-openrac-dev`). The launcher treats it as a new mod: remove the old one, and set the token and port again.
 
 Based on [evilwb/APRac2 by Will Becker](https://github.com/evilwb/APRac2), using [OpenRAC](https://github.com/OpenRAC/OpenRAC). Original copyright and MIT notices are retained. See CREDITS.md and GAMEPLAY_QUERIES.md.
 
@@ -35,9 +37,12 @@ Use `--region ntsc` for USA v1.01. The development workspace also has default ho
 
 ## Build and package
 
-From a Visual Studio tools prompt, with CMake, Ninja, Python and the matching SDK 1.40 preview:
+The client builds on Windows, Linux, macOS and Android (Winsock on Windows, POSIX sockets elsewhere: `src/net.hpp`). With CMake, Ninja, Python and a C++17 compiler (on Windows, a Visual Studio tools prompt):
 
 ```powershell
+python tools/fetch_sdk.py   # the SDK sdk.lock pins, into .sdk/ (once OpenRAC releases SDK 1.40)
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+# or, until then, against a checkout of OpenRAC's develop branch:
 cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DOPENRAC_SDK=C:/path/to/OpenRAC/sdk
 cmake --build build
 ctest --test-dir build --output-on-failure
@@ -46,6 +51,10 @@ python tools/test_world.py --archipelago C:/path/to/Archipelago --deps C:/path/t
 python tools/package_apworld.py
 python tools/package_native_mod.py --sdk C:/path/to/OpenRAC/sdk --input build/package/aprac2_client --output dist
 ```
+
+The archive is `archipelago-rac2-<version>-<platform>.zip`, the name the launcher and the OpenRAC mod index look for. `-DAPRAC2_PROBE=ON` also builds the development probe (`aprac2-openrac-probe`), which releases leave out.
+
+A tag `v<version>` makes the workflow (`.github/workflows/build.yml`) build and test the client on Windows, Linux and macOS, build it for Android, and publish every platform's archive, the APWorld, the YAML template and `SHA256SUMS` as a pre-release. It needs SDK 1.40 released, so it runs only on a tag or by hand until then.
 
 Packaging uses the SDK's standard bindings and byte-verifies the original APRac2 MIT notice as LICENSE.APRac2. Mod/sidecar/world code is MIT; nlohmann/json is MIT. The proposed OpenRAC query integration is maintained separately under OpenRAC's licenses. No retail code or assets are bundled.
 
