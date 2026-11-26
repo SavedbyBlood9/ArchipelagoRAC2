@@ -18,7 +18,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'LOGIC.md'
-LEVELS = ('Disabled', 'Easy', 'Medium', 'Hard')
+LEVELS = ('No Glitches', 'Easy', 'Medium', 'Hard')
 JUMP = '(Heli-Pack *or* Thruster-Pack)'
 DASH = '\u2014'
 PARTS = 'Hypnomatic Part'
@@ -155,9 +155,10 @@ def render(Items, Planets):
         f'Levitator and Infiltrator. A seed starts with at least 3 coordinates from {starts} (any in '
         'the starting inventory count) and 2 weapons by the Starting Weapons option.',
         '',
-        'The First Person Mode Glitch In Logic option (Disabled, Easy, Medium, Hard) lets the '
+        'The First Person Mode Glitch In Logic option (No Glitches, Easy, Medium, Hard; No Glitches is '
+        "the option's `disabled`, the default) lets the "
         'first-person movement glitch stand in for items. "Always" applies at every level, Hard '
-        'included. "Disabled", "Easy" and "Medium" are what that level needs on top of "Always"; '
+        'included. "No Glitches", "Easy" and "Medium" are what that level needs on top of "Always"; '
         "\"only:\" gives a level's whole rule where it is narrower than \"Always\" in another way. All listed items "
         'are required unless a rule says "or". A dash means no additional encoded item requirement.',
         '',
@@ -174,7 +175,7 @@ def render(Items, Planets):
         lines += [f'## {planet.name}', '']
         if planet.name in planet_rules:
             lines += [planet_rules[planet.name], '']
-        lines += ['| Location | Always | Disabled | Easy | Medium | Other rules |',
+        lines += ['| Location | Always | No Glitches | Easy | Medium | Other rules |',
                   '|---|---|---|---|---|---|']
         for loc in planet.locations:
             sets = [minimal_sets(loc.access_rule, level, pool) for level in range(len(LEVELS))]

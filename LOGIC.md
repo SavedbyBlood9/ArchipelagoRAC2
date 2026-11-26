@@ -8,7 +8,7 @@ Encoded logic for ArchipelagoRAC2: APRac2's access rules, kept as they are, with
 
 Every location also requires access to its planet. Each planet opens with its coordinates; Tabora also needs Heli-Pack and Swingshot, and Aranos Prison also needs Gravity Boots, Levitator and Infiltrator. A seed starts with at least 3 coordinates from Oozla, Maktar Nebula, Endako, Feltzin System, Notak, Todano (any in the starting inventory count) and 2 weapons by the Starting Weapons option.
 
-The First Person Mode Glitch In Logic option (Disabled, Easy, Medium, Hard) lets the first-person movement glitch stand in for items. "Always" applies at every level, Hard included. "Disabled", "Easy" and "Medium" are what that level needs on top of "Always"; "only:" gives a level's whole rule where it is narrower than "Always" in another way. All listed items are required unless a rule says "or". A dash means no additional encoded item requirement.
+The First Person Mode Glitch In Logic option (No Glitches, Easy, Medium, Hard; No Glitches is the option's `disabled`, the default) lets the first-person movement glitch stand in for items. "Always" applies at every level, Hard included. "No Glitches", "Easy" and "Medium" are what that level needs on top of "Always"; "only:" gives a level's whole rule where it is narrower than "Always" in another way. All listed items are required unless a rule says "or". A dash means no additional encoded item requirement.
 
 *Jump* means one of Heli-Pack or Thruster-Pack.
 
@@ -16,7 +16,7 @@ Goal: Yeedil: Defeat Mutated Protopet, which holds the Victory event. With Rando
 
 ## Oozla
 
-| Location | Always | Disabled | Easy | Medium | Other rules |
+| Location | Always | No Glitches | Easy | Medium | Other rules |
 |---|---|---|---|---|---|
 | Oozla: Outside Megacorp Store - Dynamo | — | — | — | — | — |
 | Oozla: End of Store Cutscene | — | Dynamo | Dynamo | — | — |
@@ -29,7 +29,7 @@ Goal: Yeedil: Defeat Mutated Protopet, which holds the Victory event. With Rando
 
 ## Maktar Nebula
 
-| Location | Always | Disabled | Easy | Medium | Other rules |
+| Location | Always | No Glitches | Easy | Medium | Other rules |
 |---|---|---|---|---|---|
 | Maktar: Arena Challenge - Electrolyzer | — | — | — | — | — |
 | Maktar: Photo Booth | (Electrolyzer *or* Heli-Pack) | only: Electrolyzer | only: Electrolyzer | — | — |
@@ -39,7 +39,7 @@ Goal: Yeedil: Defeat Mutated Protopet, which holds the Victory event. With Rando
 
 ## Endako
 
-| Location | Always | Disabled | Easy | Medium | Other rules |
+| Location | Always | No Glitches | Easy | Medium | Other rules |
 |---|---|---|---|---|---|
 | Endako: Clank's Apartment - Swingshot | — | — | — | — | — |
 | Endako: Clank's Apartment - Grindboots | — | — | — | — | — |
@@ -53,7 +53,7 @@ Goal: Yeedil: Defeat Mutated Protopet, which holds the Victory event. With Rando
 
 ## Barlow
 
-| Location | Always | Disabled | Easy | Medium | Other rules |
+| Location | Always | No Glitches | Easy | Medium | Other rules |
 |---|---|---|---|---|---|
 | Barlow: Inventor - Thermanator | — | Swingshot | — | — | — |
 | Barlow: Hoverbike Race Transmission | Electrolyzer | *Jump* | *Jump* | — | — |
@@ -69,7 +69,7 @@ Goal: Yeedil: Defeat Mutated Protopet, which holds the Victory event. With Rando
 
 ## Feltzin System
 
-| Location | Always | Disabled | Easy | Medium | Other rules |
+| Location | Always | No Glitches | Easy | Medium | Other rules |
 |---|---|---|---|---|---|
 | Feltzin: Defeat Thug Ships | — | — | — | — | — |
 | Feltzin: Race Through the Asteroids - Platinum Bolt | — | — | — | — | — |
@@ -80,7 +80,7 @@ Goal: Yeedil: Defeat Mutated Protopet, which holds the Victory event. With Rando
 
 ## Notak
 
-| Location | Always | Disabled | Easy | Medium | Other rules |
+| Location | Always | No Glitches | Easy | Medium | Other rules |
 |---|---|---|---|---|---|
 | Notak: Top of Pier Telescreen | — | Thermanator + *Jump* | — | — | — |
 | Notak: Worker Bots | — | Heli-Pack, Thermanator | Heli-Pack, Thermanator | — | — |
@@ -92,7 +92,7 @@ Goal: Yeedil: Defeat Mutated Protopet, which holds the Victory event. With Rando
 
 ## Siberius
 
-| Location | Always | Disabled | Easy | Medium | Other rules |
+| Location | Always | No Glitches | Easy | Medium | Other rules |
 |---|---|---|---|---|---|
 | Siberius: Defeat Thief | Swingshot | — | — | — | — |
 | Siberius: Flamebot Ledge - Platinum Bolt | — | Tractor Beam | — | — | — |
@@ -102,7 +102,7 @@ Goal: Yeedil: Defeat Mutated Protopet, which holds the Victory event. With Rando
 
 Reaching Tabora also needs Heli-Pack and Swingshot, on top of its coordinates.
 
-| Location | Always | Disabled | Easy | Medium | Other rules |
+| Location | Always | No Glitches | Easy | Medium | Other rules |
 |---|---|---|---|---|---|
 | Tabora: Meet Angela | Heli-Pack, Swingshot | — | — | — | — |
 | Tabora: Underground Mines - Glider | Heli-Pack, Swingshot | Thermanator | — | — | — |
@@ -116,7 +116,7 @@ Reaching Tabora also needs Heli-Pack and Swingshot, on top of its coordinates.
 
 ## Dobbo
 
-| Location | Always | Disabled | Easy | Medium | Other rules |
+| Location | Always | No Glitches | Easy | Medium | Other rules |
 |---|---|---|---|---|---|
 | Dobbo: Defeat Thug Leader | Swingshot | Dynamo + *Jump* | — | — | — |
 | Dobbo: Facility Terminal | — | Dynamo, Electrolyzer, Glider, Swingshot | Dynamo, Electrolyzer, Glider, Swingshot | — | — |
@@ -127,7 +127,7 @@ Reaching Tabora also needs Heli-Pack and Swingshot, on top of its coordinates.
 
 ## Hrugis Cloud
 
-| Location | Always | Disabled | Easy | Medium | Other rules |
+| Location | Always | No Glitches | Easy | Medium | Other rules |
 |---|---|---|---|---|---|
 | Hrugis Cloud: Destroy Defenses | — | — | — | — | — |
 | Hrugis Cloud: Race Through the Disposal Facility - Platinum Bolt | — | — | — | — | — |
@@ -137,7 +137,7 @@ Reaching Tabora also needs Heli-Pack and Swingshot, on top of its coordinates.
 
 ## Joba
 
-| Location | Always | Disabled | Easy | Medium | Other rules |
+| Location | Always | No Glitches | Easy | Medium | Other rules |
 |---|---|---|---|---|---|
 | Joba: First Hoverbike Race - Charge Boots | Swingshot | — | — | — | — |
 | Joba: Shady Salesman - Levitator | — | Dynamo + *Jump* | Dynamo + *Jump* | — | — |
@@ -152,7 +152,7 @@ Reaching Tabora also needs Heli-Pack and Swingshot, on top of its coordinates.
 
 ## Todano
 
-| Location | Always | Disabled | Easy | Medium | Other rules |
+| Location | Always | No Glitches | Easy | Medium | Other rules |
 |---|---|---|---|---|---|
 | Todano: Search Rocket Silo | — | Electrolyzer, Infiltrator + *Jump* | — | — | — |
 | Todano: Stuart Zurgo Trade - Armor Magnetizer | Qwark Statuette | Electrolyzer, Tractor Beam | Tractor Beam | Tractor Beam | — |
@@ -165,7 +165,7 @@ Reaching Tabora also needs Heli-Pack and Swingshot, on top of its coordinates.
 
 ## Boldan
 
-| Location | Always | Disabled | Easy | Medium | Other rules |
+| Location | Always | No Glitches | Easy | Medium | Other rules |
 |---|---|---|---|---|---|
 | Boldan: Find Fizzwidget | — | Gravity Boots, Levitator, Swingshot | Gravity Boots, Swingshot | Gravity Boots + *Jump* | — |
 | Boldan: Spiderbot Alley - Platinum Bolt | — | Levitator, Spiderbot Glove | — | — | — |
@@ -177,7 +177,7 @@ Reaching Tabora also needs Heli-Pack and Swingshot, on top of its coordinates.
 
 Reaching Aranos Prison also needs Gravity Boots, Levitator and Infiltrator, on top of its coordinates.
 
-| Location | Always | Disabled | Easy | Medium | Other rules |
+| Location | Always | No Glitches | Easy | Medium | Other rules |
 |---|---|---|---|---|---|
 | Aranos: Control Room | — | Gravity Boots, Infiltrator, Levitator | Gravity Boots, Infiltrator, Levitator | Infiltrator, Levitator | — |
 | Aranos: Plumber - Qwark Statuette | — | Gravity Boots, Levitator | Gravity Boots, Levitator | — | — |
@@ -188,7 +188,7 @@ Reaching Aranos Prison also needs Gravity Boots, Levitator and Infiltrator, on t
 
 ## Gorn
 
-| Location | Always | Disabled | Easy | Medium | Other rules |
+| Location | Always | No Glitches | Easy | Medium | Other rules |
 |---|---|---|---|---|---|
 | Gorn: Defeat Thug Fleet | — | — | — | — | — |
 | Gorn: Race Through the Docking Bays - Platinum Bolt | — | — | — | — | — |
@@ -198,7 +198,7 @@ Reaching Aranos Prison also needs Gravity Boots, Levitator and Infiltrator, on t
 
 ## Snivelak
 
-| Location | Always | Disabled | Easy | Medium | Other rules |
+| Location | Always | No Glitches | Easy | Medium | Other rules |
 |---|---|---|---|---|---|
 | Snivelak: Rescue Angela | Swingshot | Dynamo, Gravity Boots, Grindboots | — | — | — |
 | Snivelak: Dynamo Platforms - Platinum Bolt | Swingshot | Dynamo, Gravity Boots, Grindboots, Heli-Pack | — | — | — |
@@ -206,7 +206,7 @@ Reaching Aranos Prison also needs Gravity Boots, Levitator and Infiltrator, on t
 
 ## Smolg
 
-| Location | Always | Disabled | Easy | Medium | Other rules |
+| Location | Always | No Glitches | Easy | Medium | Other rules |
 |---|---|---|---|---|---|
 | Smolg: Balloon Transmission | Electrolyzer | Dynamo + *Jump* | — | — | — |
 | Smolg: Distribution Facility End - Hypnomatic Part | Electrolyzer | Dynamo, Grindboots, Infiltrator + *Jump* | — | — | — |
@@ -216,7 +216,7 @@ Reaching Aranos Prison also needs Gravity Boots, Levitator and Infiltrator, on t
 
 ## Damosel
 
-| Location | Always | Disabled | Easy | Medium | Other rules |
+| Location | Always | No Glitches | Easy | Medium | Other rules |
 |---|---|---|---|---|---|
 | Damosel: Hypnotist | all 3 Hypnomatic Parts, Swingshot, Thermanator + *Jump* | — | — | — | — |
 | Damosel: Train Rails - Hypnomatic Part | Grindboots | — | — | — | — |
@@ -226,7 +226,7 @@ Reaching Aranos Prison also needs Gravity Boots, Levitator and Infiltrator, on t
 
 ## Grelbin
 
-| Location | Always | Disabled | Easy | Medium | Other rules |
+| Location | Always | No Glitches | Easy | Medium | Other rules |
 |---|---|---|---|---|---|
 | Grelbin: Find Angela | — | Hypnomatic | — | — | — |
 | Grelbin: Mystic More Moonstones - Hypnomatic Part | Glider, Infiltrator | — | — | — | — |
@@ -236,7 +236,7 @@ Reaching Aranos Prison also needs Gravity Boots, Levitator and Infiltrator, on t
 
 ## Yeedil
 
-| Location | Always | Disabled | Easy | Medium | Other rules |
+| Location | Always | No Glitches | Easy | Medium | Other rules |
 |---|---|---|---|---|---|
 | Yeedil: Defeat Mutated Protopet | Infiltrator | Dynamo, Electrolyzer, Hypnomatic, Swingshot + *Jump* | Dynamo, Hypnomatic, Swingshot + *Jump* | Hypnomatic, Swingshot | Goal (Victory) |
 | Yeedil: Bridge Grindrail - Platinum Bolt | — | Grindboots | — | — | — |
