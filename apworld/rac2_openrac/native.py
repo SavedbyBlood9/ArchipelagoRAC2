@@ -30,6 +30,11 @@ def validate_options(options):
     return result
 
 
+# The discs the native mod plays: USA v1.01, Locked & Loaded PAL and USA v2.00. A seed lists the
+# ones it was made for; seeds from before v2.00 list only the first two and stay valid.
+DISCS = ('ntsc', 'pal', 'ntsc2')
+
+
 def build_slot_data(world):
     from .data import Planets
     options = validate_options(world.get_options_as_dict())
@@ -37,7 +42,7 @@ def build_slot_data(world):
     starting = sorted(item.code for item in world.multiworld.precollected_items[world.player]
                       if item.code is not None)
     return dict(options, openrac=dict(
-        format=FORMAT, game=GAME, target='rac2', supported_discs=['ntsc','pal'],
+        format=FORMAT, game=GAME, target='rac2', supported_discs=list(DISCS),
         seed=str(world.multiworld.seed_name), player=world.player,
         starting_items=starting,
         starting_weapon_ids=[item.item_id for item in world.starting_weapons],
@@ -49,11 +54,11 @@ def validate_slot_data(data):
     if not isinstance(data, dict) or not isinstance(data.get('openrac'), dict):
         raise ValueError('This seed is from the PS2 APWorld; regenerate with ArchipelagoRAC2.apworld')
     native = data['openrac']
-    if native.get('format') != FORMAT or native.get('game') != GAME or native.get('target') not in ('rac2','rac2/ntsc','rac2/pal'):
+    if native.get('format') != FORMAT or native.get('game') != GAME or native.get('target') not in ('rac2',*(f'rac2/{d}' for d in DISCS)):
         raise ValueError('Unsupported APRac2 OpenRAC seed format or game target')
     discs=native.get('supported_discs')
     if discs is not None and (not isinstance(discs,list) or not discs or
-                              any(d not in ('ntsc','pal') for d in discs) or len(set(discs))!=len(discs)):
+                              any(d not in DISCS for d in discs) or len(set(discs))!=len(discs)):
         raise ValueError('Unsupported disc list in native slot data')
     if not isinstance(native.get('seed'), str) or not native['seed']:
         raise ValueError('Missing seed identity')

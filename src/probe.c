@@ -31,14 +31,14 @@ OPENRAC_MOD_EXPORT void openrac_mod_query(openrac_mod_info* out) {
     out->api_major = OPENRAC_MOD_API_MAJOR;
     out->api_minor = OPENRAC_MOD_TARGET_MINOR;
     out->id = "aprac2-openrac-probe";
-    out->version = "0.2.0";
+    out->version = "0.3.0";
 }
 
 OPENRAC_MOD_EXPORT int openrac_mod_load(const openrac_api* api, openrac_mod* mod) {
     host = api;
     handle = mod;
-    if (!api->game || strcmp(api->game, "rac2") || !api->version || (strcmp(api->version, "ntsc") && strcmp(api->version, "pal"))) {
-        api->fail(mod, "ArchipelagoRAC2 probe requires Going Commando USA v1.01 or Locked & Loaded PAL (rac2/ntsc or rac2/pal)");
+    if (!api->game || strcmp(api->game, "rac2") || !api->version || (strcmp(api->version, "ntsc") && strcmp(api->version, "pal") && strcmp(api->version, "ntsc2"))) {
+        api->fail(mod, "ArchipelagoRAC2 probe requires Going Commando USA v1.01 or v2.00, or Locked & Loaded PAL (rac2/ntsc, rac2/ntsc2 or rac2/pal)");
         return 1;
     }
     /* The host checks the manifest/API before loading; hook errors still get a precise reason. */

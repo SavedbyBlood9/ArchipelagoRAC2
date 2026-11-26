@@ -40,7 +40,7 @@ class WorldTest(unittest.TestCase):
         self.assertEqual(set(data)-{'openrac'},set(OPTION_KEYS))
         self.assertEqual(validate_slot_data(data),data)
         self.assertEqual(data['openrac']['target'],'rac2')
-        self.assertEqual(data['openrac']['supported_discs'],['ntsc','pal'])
+        self.assertEqual(data['openrac']['supported_discs'],['ntsc','pal','ntsc2'])
         self.assertEqual(len(data['openrac']['starting_weapon_ids']),2)
         self.assertGreaterEqual(len([i for i in data['openrac']['starting_items'] if 201<=i<=220]),3)
         with tempfile.TemporaryDirectory() as output:
