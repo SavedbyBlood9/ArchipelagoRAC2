@@ -10,6 +10,8 @@ The mod's id is `archipelago-rac2` from 0.5.0 on (0.4.0 and earlier were `aprac2
 
 Based on [evilwb/APRac2 by Will Becker](https://github.com/evilwb/APRac2), using [OpenRAC](https://github.com/OpenRAC/OpenRAC). Original copyright and MIT notices are retained. See CREDITS.md and GAMEPLAY_QUERIES.md.
 
+What every check needs, planet by planet and at each First Person Mode Glitch In Logic level, is in [LOGIC.md](LOGIC.md). It is generated from the APWorld's rules by `tools/generate_logic_doc.py --archipelago <Archipelago checkout>`, and `tools/test_world.py` fails when it is out of date.
+
 ## Setup
 
 1. Install the supplied APWorld with Archipelago 0.6.9+ in `custom_worlds`, replacing the original APRac2 APWorld (both register the same game). Generate a native seed with the YAML template.
