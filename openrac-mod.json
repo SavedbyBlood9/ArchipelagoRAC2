@@ -2,7 +2,7 @@
   "format": 2,
   "id": "archipelago-rac2",
   "name": "ArchipelagoRAC2",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "author": "ArchipelagoRAC2 contributors; based on APRac2 by evilwb / Will Becker",
   "description": "Experimental Archipelago multiworld for Going Commando USA v1.01 and v2.00, and Locked & Loaded PAL. Gameplay decisions run in the mod using OpenRAC API 1.40 queries; no private host overrides or activation bytes. Based on evilwb/APRac2.",
   "license": "MIT",
