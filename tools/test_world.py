@@ -68,6 +68,22 @@ class WorldTest(unittest.TestCase):
                     self.assertEqual(data['enable_bolt_multiplier'],1)
                     self.assertEqual(data['nanotech_xp_multiplier'],20)
 
+    def test_snivelak_rescue_angela_glitch_levels(self):
+        # With the first-person glitch in logic from easy up, Rescue Angela needs only the
+        # Swingshot, as the other Snivelak checks do (the rule once read `>+`, which is `> +1`).
+        from BaseClasses import CollectionState
+        full=['Swingshot','Grindboots','Gravity Boots','Dynamo']
+        for mode,needs_all in ((0,True),(1,False),(2,False),(3,False)):
+            with self.subTest(mode=mode):
+                multi=setup_multiworld(Rac2World,seed=4242,options=dict(first_person_mode_glitch_in_logic=mode))
+                world=multi.worlds[1]
+                location=multi.get_location('Snivelak: Rescue Angela',1)
+                state=CollectionState(multi)
+                state.collect(world.create_item('Swingshot'),True)
+                self.assertEqual(location.access_rule(state),not needs_all)
+                for name in full[1:]:state.collect(world.create_item(name),True)
+                self.assertTrue(location.access_rule(state))
+
     def test_two_slots(self):
         multi=setup_multiworld([Rac2World,Rac2World],seed=999,
                                options=[dict(randomize_megacorp_vendor=True),dict(starting_weapons=3)])
