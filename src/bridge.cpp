@@ -1,11 +1,8 @@
 // SPDX-License-Identifier: MIT
 // The worker speaks only to the local sidecar; all OpenRAC SDK calls stay on the game thread.
-#define WIN32_LEAN_AND_MEAN
-#define NOMINMAX
-#include <winsock2.h>
-#include <ws2tcpip.h>
 #include <chrono>
 #include "bridge.hpp"
+#include "net.hpp"
 
 namespace rac2ap {
 using namespace std::chrono_literals;
@@ -24,22 +21,20 @@ bool Bridge::send(const nlohmann::json& event) {
     outgoing_.push_back(std::move(text)); return true;
 }
 void Bridge::run(int port, const std::string& token) {
-    WSADATA data{};
-    if (WSAStartup(MAKEWORD(2,2), &data)) return;
+    if (!net::startup()) return;
     while (running_) {
-        SOCKET sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-        if (sock == INVALID_SOCKET) break;
-        u_long nonblock = 1;
-        ioctlsocket(sock, FIONBIO, &nonblock);
-        sockaddr_in addr{}; addr.sin_family = AF_INET; addr.sin_port = htons(static_cast<u_short>(port));
+        net::socket_t sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+        if (sock == net::invalid) break;
+        net::set_nonblocking(sock);
+        sockaddr_in addr{}; addr.sin_family = AF_INET; addr.sin_port = htons(static_cast<unsigned short>(port));
         inet_pton(AF_INET, "127.0.0.1", &addr.sin_addr);
         int result = connect(sock, reinterpret_cast<sockaddr*>(&addr), sizeof addr);
         bool connected = result == 0;
-        if (!connected && WSAGetLastError() == WSAEWOULDBLOCK) {
+        if (!connected && net::connecting()) {
             fd_set writes, errors; FD_ZERO(&writes); FD_ZERO(&errors); FD_SET(sock,&writes); FD_SET(sock,&errors);
             timeval timeout{0,250000};
-            if (select(0,nullptr,&writes,&errors,&timeout)>0 && FD_ISSET(sock,&writes) && !FD_ISSET(sock,&errors)) {
-                int error=0, size=sizeof error;
+            if (select(net::nfds(sock),nullptr,&writes,&errors,&timeout)>0 && FD_ISSET(sock,&writes) && !FD_ISSET(sock,&errors)) {
+                int error=0; net::socklen size=sizeof error;
                 getsockopt(sock,SOL_SOCKET,SO_ERROR,reinterpret_cast<char*>(&error),&size);
                 connected = error == 0;
             }
@@ -48,9 +43,9 @@ void Bridge::run(int port, const std::string& token) {
             auto hello = nlohmann::json{{"type","hello"},{"token",token}}.dump() + "\n";
             std::size_t sent=0;
             while (running_ && sent<hello.size()) {
-                int n = ::send(sock,hello.data()+sent,static_cast<int>(hello.size()-sent),0);
+                int n = net::send(sock,hello.data()+sent,hello.size()-sent);
                 if (n>0) sent+=n;
-                else if (WSAGetLastError()==WSAEWOULDBLOCK) std::this_thread::sleep_for(10ms);
+                else if (net::would_block()) std::this_thread::sleep_for(10ms);
                 else break;
             }
             std::string buffer;
@@ -62,15 +57,15 @@ void Bridge::run(int port, const std::string& token) {
                     if(!outgoing_.empty()) { outgoing=std::move(outgoing_.front()); outgoing_.pop_front(); offset=0; }
                 }
                 if(!outgoing.empty()) {
-                    int written=::send(sock,outgoing.data()+offset,static_cast<int>(outgoing.size()-offset),0);
+                    int written=net::send(sock,outgoing.data()+offset,outgoing.size()-offset);
                     if(written>0) { offset+=written; if(offset==outgoing.size()) outgoing.clear(); }
-                    else if(WSAGetLastError()!=WSAEWOULDBLOCK) break;
+                    else if(!net::would_block()) break;
                 }
                 fd_set reads; FD_ZERO(&reads); FD_SET(sock,&reads); timeval timeout{0,100000};
-                int ready = select(0,&reads,nullptr,nullptr,&timeout);
+                int ready = select(net::nfds(sock),&reads,nullptr,nullptr,&timeout);
                 if (ready<0) break;
                 if (!ready) continue;
-                char bytes[8192]; int n=recv(sock,bytes,sizeof bytes,0);
+                char bytes[8192]; int n=static_cast<int>(recv(sock,bytes,sizeof bytes,0));
                 if (n<=0) break;
                 buffer.append(bytes,n);
                 if (buffer.size()>1024*1024) break;
@@ -85,10 +80,10 @@ void Bridge::run(int port, const std::string& token) {
                 }
             }
         }
-        closesocket(sock);
+        net::close(sock);
         { std::lock_guard<std::mutex> guard(mutex_); state_=nullptr; }
         for (int i=0; running_ && i<10; ++i) std::this_thread::sleep_for(100ms);
     }
-    WSACleanup();
+    net::cleanup();
 }
 }

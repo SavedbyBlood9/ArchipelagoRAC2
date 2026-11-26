@@ -1,0 +1,6 @@
+{
+  "about": "The OpenRAC mod SDK this mod builds against: tools/fetch_sdk.py downloads it into .sdk/ and checks its SHA-256 (the first fetch fills it in from the release: commit it); CMakeLists.txt finds it there. 1.40.0 is the first SDK with the gameplay queries (on_play_query) and the RAC2 inventory and story hooks this mod needs; it is on OpenRAC's develop branch and not yet released.",
+  "version": "1.40.0",
+  "url": "https://github.com/OpenRAC/OpenRAC/releases/download/sdk-v1.40.0/openrac-mod-sdk-1.40.0.zip",
+  "sha256": ""
+}

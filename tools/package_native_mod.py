@@ -21,6 +21,6 @@ packaged=module.package(a.input,a.output)
 with ZipFile(packaged) as archive:
     if archive.read('LICENSE.APRac2')!=upstream.read_bytes():
         raise RuntimeError('Packaged APRac2 license differs from the original notice')
-branded=a.output/packaged.name.replace('aprac2-openrac-dev-','ArchipelagoRAC2-').replace('aprac2-openrac-probe-','ArchipelagoRAC2-Probe-')
-if packaged!=branded:packaged.replace(branded)
-print(branded)
+# The archive keeps the SDK's name, <id>-<version>-<platform>.zip: the launcher and the OpenRAC
+# mod index find a release's archives by it.
+print(packaged)

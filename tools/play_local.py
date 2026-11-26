@@ -46,13 +46,13 @@ else:
     quote=lambda path:"'"+str(path).replace("'","''")+"'"
     command='New-Item -ItemType Junction -Path '+quote(assets)+' -Target '+quote(target)+' | Out-Null'
     subprocess.run(['powershell.exe','-NoProfile','-Command',command],check=True,creationflags=subprocess.CREATE_NO_WINDOW)
-plugins=run/'plugins';mod=plugins/'aprac2-openrac-dev';mod.mkdir(parents=True,exist_ok=True)
-archive=ROOT/'dist/ArchipelagoRAC2-0.5.0-windows-x86_64.zip'
+plugins=run/'plugins';mod=plugins/'archipelago-rac2';mod.mkdir(parents=True,exist_ok=True)
+archive=ROOT/'dist/archipelago-rac2-0.5.0-windows-x86_64.zip'
 with zipfile.ZipFile(archive) as z:z.extractall(mod)
 with socket.socket() as candidate:
     candidate.bind(('127.0.0.1',0));port=candidate.getsockname()[1]
 token=secrets.token_urlsafe(32)
-config=dict(format=1,mods=[dict(id='aprac2-openrac-dev',enabled=True,settings=dict(
+config=dict(format=1,mods=[dict(id='archipelago-rac2',enabled=True,settings=dict(
     enable_gameplay=True,bridge_port=port,bridge_token=token))])
 (plugins/'plugins.json').write_text(json.dumps(config,indent=2))
 client=[sys.executable,str(ROOT/'client/client.py'),'--server',a.server,'--slot',a.slot,'--port',str(port),'--token',token]
