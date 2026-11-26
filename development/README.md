@@ -1,4 +1,4 @@
-# ArchipelagoRAC2 0.6.0 (API preview)
+# ArchipelagoRAC2 0.6.1 (API preview)
 
 Native Archipelago client for Going Commando USA v1.01 and v2.00 and Locked & Loaded PAL SCES_516.07. Requires the generic inventory/story hooks and proposed gameplay-query API 1.40. Current stock releases without that integration cannot load this preview.
 

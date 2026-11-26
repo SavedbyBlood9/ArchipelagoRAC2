@@ -51,7 +51,7 @@ else:
     command='New-Item -ItemType Junction -Path '+quote(assets)+' -Target '+quote(target)+' | Out-Null'
     subprocess.run(['powershell.exe','-NoProfile','-Command',command],check=True,creationflags=subprocess.CREATE_NO_WINDOW)
 plugins=run/'plugins';mod=plugins/'archipelago-rac2';mod.mkdir(parents=True,exist_ok=True)
-archive=ROOT/'dist/archipelago-rac2-0.6.0-windows-x86_64.zip'
+archive=ROOT/'dist/archipelago-rac2-0.6.1-windows-x86_64.zip'
 with zipfile.ZipFile(archive) as z:z.extractall(mod)
 with socket.socket() as candidate:
     candidate.bind(('127.0.0.1',0));port=candidate.getsockname()[1]

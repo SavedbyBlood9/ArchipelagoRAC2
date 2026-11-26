@@ -37,5 +37,5 @@ void load(openrac::Mod& mod) {
     mod.info(runtime?"ArchipelagoRAC2 experimental native gameplay loaded":"ArchipelagoRAC2 connection validation loaded; gameplay setting is off");
 }
 }
-OPENRAC_MOD_CPP("archipelago-rac2", "0.6.0", load)
+OPENRAC_MOD_CPP("archipelago-rac2", "0.6.1", load)
 extern "C" OPENRAC_MOD_EXPORT void openrac_mod_unload(void) { bridge.stop(); runtime.reset(); }

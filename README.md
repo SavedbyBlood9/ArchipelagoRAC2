@@ -1,4 +1,4 @@
-# ArchipelagoRAC2 0.6.0 (API preview)
+# ArchipelagoRAC2 0.6.1 (API preview)
 
 Archipelago multiworld for Going Commando USA v1.01 and v2.00 and Locked & Loaded PAL SCES_516.07 on OpenRAC. Original APRac2 game identity, item/location IDs, YAML options and access logic are retained.
 
